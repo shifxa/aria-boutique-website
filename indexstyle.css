@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.navbar{
+     padding: 0px;
+     /* background-size: cover;
+     background-repeat: no-repeat;
+     background-position: center; */
+     backdrop-filter: blur;
+}
+.container-fluid{
+
+}
+
+.nav-logo1{
+     height: 70px;
+     width: 70px;
+     border-radius: 50%;
+     padding: 3px;
+}
+
+.nav-item{
+     margin-left: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-caption{
+     position: absolute;
+     margin-bottom: 200px;
+     margin-left: 600px;
+     font-weight: 500;
+     font-size: 40px;
+     text-align: center;
+}
+
+.carousel-label1{
+     display: flex;
+}
+
+a.nav-link{
+     color: whitesmoke;
+}
+
+.nav-link {
+      font-size: 20px;
+      font-weight: 900;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.nav-search{
+     margin-left: 15px;
+     margin-top: 3px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 80%;
+     height: 40px;
+     border-style: none;
+     font-size: large;
+}
+
+/* aria-label="Search" */
+
+.nav-search-btn{
+     margin-left: 10px;
+     margin-top: 30px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+.nav-icon{
+     text-decoration: none;
+     color: black;
+     margin-top: 5px;
+     margin-right: 30px;
+     font-size: large;
+}
+.searchBar{
+     display: flex;
+     background-color: #fff;
+     align-items: center;
+     justify-content: center;
+     width: 500px;
+     margin-top: 13px;
+     margin-left: 20px;
+     border-radius: 10px;
+}
+
+.nav-search-icon{
+     margin-left: 0px;
+     margin-top: 3px;
+
+}
+.carousel-item {
+     margin-top: 0px;
+}
+
+/* CATEGORIES STYLE START HERE */
+
+.categories{
+     background-color: #ebc3a8;
+}
+
+.categories-header{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 40px;
+        padding-top: 25px;
+        color: rgb(130, 49, 68);
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+.categories-item{
+     justify-content: center;
+     margin-top: 50px;
+     display: flex;
+     margin: 0;
+     padding: 0;
+}
+.categories-img{
+     position: relative;
+     height: 200px;
+     width: 200px;
+     border-radius: 50%;
+     margin-bottom: 30px;
+     object-fit: cover;
+}
+.categories-content{
+     width: fit-content;
+     display: flex;
+     align-items: start;
+     justify-content: start;
+     flex-direction: row;
+     overflow-x: scroll;
+     gap: 2rem;
+     margin-inline: 2rem;
+}
+.categories-anchor{
+     /* position: absolute;
+     margin-left: -80px;
+     margin-top: 100px; */
+    
+}
+.categories-extra{
+     position: absolute;
+     margin-left: -90px;
+     margin-top: 100px;
+    
+}
+.categories-extra-long{
+     position: absolute;
+     margin-left: -100px;
+     margin-top: 100px;
+    
+}
+.categories-list{
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     list-style: none;
+     /* margin-left: 55px; */
+     width: 250px;
+     
+}
+
+.categories-anchor{
+    text-decoration: none;
+    font-size: 20px;
+    color: rgb(130, 49, 68);;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
+}
+
+/* QUOTES STYLE START HERE */
+
+.quotes-content{
+     
+}
+
+.quotes-img{
+     width: 100%;
+     height: 400px;
+}
+
+.quotes-header{
+     margin-top: -300px;
+     font-size: 100px;
+     color: whitesmoke;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+
+}
+
+.quotes{
+     font-weight: 900;
+     font-size: 30px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     color: whitesmoke;
+     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+/* QUOTES STYLE ENDS HERE */
+/* NEW ARRIVALS STYLE START HERE */
+
+
+
+
+
+
+
+
+
+/* NEW ARRIVALS STYLE START HERE */
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.categories-content::-webkit-scrollbar {
+     display: none;
+   }
+   
+   /* Hide scrollbar for IE, Edge and Firefox */
+   .categories-content {
+     -ms-overflow-style: none;  /* IE and Edge */
+     scrollbar-width: none;  /* Firefox */
+   }
