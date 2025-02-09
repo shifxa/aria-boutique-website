@@ -526,7 +526,7 @@ a.nav-link {
 }
 
 .our-bestsellers-right-section {
-  flex: 1;
+  width: 60%;
   overflow-x: hidden;
 }
 
@@ -562,7 +562,219 @@ a.nav-link {
   display: none;
 }
 
+@media (max-width: 768px) {
+  .our-bestsellers-wrapper {
+    flex-direction: column;
+    padding-left: 0rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .our-bestsellers-left-section {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  .our-bestsellers-wrapper > div > h1 {
+    text-align: center;
+  }
+  .our-bestsellers-wrapper > div > h5 {
+    text-align: center;
+  }
+  .our-bestsellers-wrapper > div > h6 {
+    text-align: center;
+  }
+
+  .our-bestsellers-right-section {
+    width: 96%;
+  }
+}
+
 /* OUR BESTSELLERS STYLE ENDS HERE */
+
+/* INFO STYLE STARTS HERE */
+
+.info-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: start;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.info-div {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Raleway", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  text-align: left;
+  margin-top: 1rem;
+  gap: 1.6rem;
+}
+
+.info-div-icon {
+  background-color: #dcdcdc;
+  border-radius: 100%;
+  height: 80px;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-div-icon > i {
+  font-size: 2rem;
+}
+
+.info-div > p {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .info-div {
+    width: 100%;
+    padding-inline: 0.4rem;
+  }
+}
+
+/* INFO STYLE ENDS HERE */
+
+/* FOOTER STYLE STARTS HERE */
+
+.footer {
+  background-color: #000;
+  width: 100%;
+  min-height: 40vh;
+  height: max-content;
+}
+
+.footer-content-wrapper {
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: row;
+  gap: 4rem;
+}
+
+.footer-logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+}
+
+.footer-logo-section > img {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+.footer-logo-section > h3 {
+  margin-top: 1rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.footer-link-group > h4 {
+  color: white;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+
+.footer-links > li > a {
+  text-decoration: none;
+  color: white;
+}
+
+.footer-links > li > a:hover {
+  color: #f9e2ae
+}
+
+.footer-links > a{
+     color: white;
+     text-decoration: none;
+}
+
+.footer-links > a:hover {
+     color: #f9e2ae
+   }
+
+.contact-info{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+}
+
+.contact-info > h4{
+     color: white;
+}
+
+.footer-map > h4{
+     color: white;
+     
+}
+
+.footer-map{
+     flex: 1;
+}
+
+
+/* CSS FOR MAP */
+
+.mapouter {
+     padding: 1rem;
+     position: relative;
+     text-align: right;
+     width: 100%;
+     height: 350px;
+ }
+
+ .gmap_canvas {
+     overflow: hidden;
+     background: none !important;
+     width: 100%;
+     height: 350px;
+ }
+
+ .gmap_iframe {
+     height: 350px !important;
+ }
+
+
+ .divider{
+     background-color: #666;
+     width: 90%;
+     height: 0.1rem;
+     margin-inline: auto;
+ }
+
+ .footer-bottom-info{
+     background-color: #000;
+ }
+
+/* FOOTER STYLE ENDS HERE */
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .categories-content::-webkit-scrollbar {
