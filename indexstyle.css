@@ -146,11 +146,7 @@ a.nav-link {
   gap: 2rem;
   padding-inline: 2rem;
 }
-.categories-anchor {
-  /* position: absolute;
-     margin-left: -80px;
-     margin-top: 100px; */
-}
+
 .categories-extra {
   position: absolute;
   margin-left: -90px;
@@ -764,7 +760,7 @@ a.nav-link {
 
 
  .divider{
-     background-color: #666;
+     background-color: #686056;
      width: 90%;
      height: 0.1rem;
      margin-inline: auto;
@@ -772,6 +768,13 @@ a.nav-link {
 
  .footer-bottom-info{
      background-color: #000;
+ }
+
+ .footer-bottom-info >p{
+     text-align: center;
+     margin-block: 0rem;
+     padding: 1rem;
+     color: white;
  }
 
 /* FOOTER STYLE ENDS HERE */
