@@ -95,6 +95,7 @@ a.nav-link {
 .nav-search-icon {
   margin-top: 3px;
 }
+
 .carousel-item {
   margin-top: 0px;
 }
@@ -102,8 +103,7 @@ a.nav-link {
 /* CATEGORIES STYLE START HERE */
 
 .categories {
-  /* background-color: #d8bfb4; */
-  background-image: linear-gradient(#d8bfb4, #d8bfb4,white);
+  background-image: linear-gradient(#d8bfb4, #d8bfb4, white);
   font-family: "Raleway", serif;
   font-optical-sizing: auto;
   font-weight: 600;
@@ -120,6 +120,7 @@ a.nav-link {
   color: rgb(130, 49, 68);
   margin-bottom: 1rem;
 }
+
 .categories-item {
   justify-content: center;
   margin-top: 50px;
@@ -143,7 +144,7 @@ a.nav-link {
   flex-direction: row;
   overflow-x: scroll;
   gap: 2rem;
-  margin-inline: 2rem;
+  padding-inline: 2rem;
 }
 .categories-anchor {
   /* position: absolute;
@@ -179,6 +180,25 @@ a.nav-link {
 .categories-anchor:hover {
   color: #000;
 }
+
+@media (max-width: 768px) {
+  .categories-header {
+    font-size: 2.4rem;
+    letter-spacing: 0.4rem;
+  }
+  .categories-img {
+    height: 120px;
+    width: 120px;
+  }
+  .categories-content {
+    gap: 1rem;
+  }
+  .categories-item {
+    text-align: center;
+  }
+}
+
+/* CATEGORIES STYLE ENDS HERE */
 
 /* QUOTES STYLE START HERE */
 
@@ -225,7 +245,22 @@ a.nav-link {
   /* font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif; */
 }
 
+@media (max-width: 768px) {
+  .quotes-img {
+    height: 32rem;
+    object-fit: cover;
+  }
+  .quotes-header {
+    font-size: 4rem;
+  }
+  .quotes {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+}
+
 /* QUOTES STYLE ENDS HERE */
+
 /* NEW ARRIVALS STYLE START HERE */
 
 .new-arrivals {
@@ -237,9 +272,10 @@ a.nav-link {
   align-items: center;
   justify-content: center;
   /* background-color: #d8bfb4; */
-  background-image: linear-gradient(white,#d8bfb4, #d8bfb4);
+  background-image: linear-gradient(white, #d8bfb4, #d8bfb4);
   padding: 2rem;
   gap: 4rem;
+  overflow-x: hidden;
 }
 
 .new-arrivals-image {
@@ -263,8 +299,14 @@ a.nav-link {
   font-size: 6rem;
   margin-top: 4rem;
 }
+
+.new-arrivals-headings > h3 {
+  text-align: center;
+}
+
 .new-arrivals-headings > h4 {
   margin-top: 1rem;
+  opacity: 0.9;
 }
 
 .new-arrival-images-wrapper {
@@ -274,6 +316,7 @@ a.nav-link {
   flex-direction: row;
   gap: 1rem;
 }
+
 .explore-btn {
   background-color: #d8bfb4;
   text-decoration: none;
@@ -291,96 +334,235 @@ a.nav-link {
   transition-duration: 400ms;
 }
 
-/* NEW ARRIVALS STYLE START HERE */
-.newsletter-wrapper{
-     background-image: linear-gradient(#d8bfb4, #d8bfb4,white,);
-     background-color: #d8bfb4;
-     width: 100%;
-     height: 40vh;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
+@media (max-width: 768px) {
+  .new-arrivals {
+    align-items: start;
+    justify-content: center;
+    padding-inline: 0rem;
+  }
+
+  .new-arrivals-headings > h1 {
+    font-size: 4rem;
+    text-align: center;
+  }
+
+  .new-arrival-images-wrapper {
+    width: 100%;
+    overflow-x: scroll;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    padding-inline: 1rem;
+    /* For Hiding Horizontal Scrollbar */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .new-arrivals-image {
+    width: 240px;
+    height: 320px;
+  }
+}
+
+/* NEW ARRIVALS STYLE ENDS HERE */
+
+/* NEWSLETTERS STYLE STARTS HERE */
+
+.newsletter-wrapper {
+  /* background-color: #d8bfb4; */
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .newsletter-section {
-     text-align: center;
-     max-width: 600px;
-     height: 100%;
-     margin: 0 auto;
+  background-image: linear-gradient(#d8bfb4, #d8bfb4, white);
+  text-align: center;
+  /* max-width: 600px; */
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
 }
 
 .newsletter-section h1 {
-      margin-top: 3rem;
-     font-size: 32px;
-     color: #333;
-     margin-bottom: 20px;
-     font-weight: normal;
- }
+  margin-top: 3rem;
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
 
- .newsletter-section p {
-     color: #666;
-     margin-bottom: 30px;
-     line-height: 1.5;
- }
+.newsletter-section p {
+  color: #575757;
+  margin-bottom: 30px;
+  line-height: 1.5;
+  font-weight: 600;
+}
 
- .subscription-form {
-     display: flex;
-     gap: 10px;
-     margin-bottom: 40px;
-     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-     border-radius: 4px;
-     overflow: hidden;
- }
+.subscription-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
 
- .subscription-form input {
-     flex: 1;
-     padding: 15px;
-     border: 1px solid #ddd;
-     border-right: none;
-     outline: none;
-     font-size: 16px;
- }
+.subscription-form input {
+  flex: 0.4;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-right: none;
+  outline: none;
+  font-size: 16px;
+}
 
- .subscription-form button {
-     padding: 15px 30px;
-     background-color: #333;
-     color: white;
-     border: none;
-     cursor: pointer;
-     font-size: 16px;
-     transition: background-color 0.3s;
- }
+.subscription-form button {
+  padding: 15px 30px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
 
- .subscription-form button:hover {
-     background-color: #444;
- }
+.subscription-form button:hover {
+  background-color: #444;
+}
 
- .support-section {
-     text-align: center;
- }
+.support-section {
+  text-align: center;
+}
 
- .support-section h2 {
-     color: #333;
-     font-size: 24px;
-     font-weight: normal;
- }
+.support-section h2 {
+  color: #333;
+  font-size: 24px;
+  font-weight: normal;
+}
 
- @media (max-width: 600px) {
-     .subscription-form {
-         flex-direction: column;
-     }
+@media (max-width: 600px) {
+  .newsletter-section {
+    padding: 1rem;
+  }
+  .subscription-form {
+    flex-direction: column;
+    padding: 1rem;
+  }
 
-     .subscription-form input {
-         border-right: 1px solid #ddd;
-         border-bottom: none;
-     }
+  .subscription-form input {
+    border-right: 1px solid #ddd;
+    border-bottom: none;
+    width: 85%;
+    margin-inline: auto;
+    padding: 12px;
+  }
 
-     .newsletter-section h1 {
-         font-size: 24px;
-     }
- }
+  .newsletter-section h1 {
+    font-size: 24px;
+  }
 
+  .subscription-form button {
+    width: 85%;
+    margin-inline: auto;
+    padding: 10px 30px;
+  }
+}
+
+/* NEWSLETTERS STYLE ENDS HERE */
+
+/* OUR BESTSELLERS STYLE STARTS HERE */
+.our-bestsellers-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  height: max-content;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 1rem;
+}
+
+.our-bestsellers-left-section {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  width: 40%;
+  height: 100%;
+  padding: 1rem;
+}
+
+.our-bestsellers-wrapper > div > h1 {
+  font-family: "Raleway", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  width: 100%;
+  text-align: left;
+}
+
+.our-bestsellers-wrapper > div > h5 {
+  font-family: "Raleway", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.our-bestsellers-wrapper > div > h6 {
+  font-family: "Raleway", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  width: 100%;
+  text-align: left;
+  margin-top: 0.2rem;
+}
+
+.our-bestsellers-right-section {
+  flex: 1;
+  overflow-x: hidden;
+}
+
+.our-bestsellers-images-wrapper {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  gap: 1rem;
+  overflow-x: scroll;
+  position: relative;
+  padding-right: 1rem;
+}
+
+.get-yours-btn {
+  background-color: #d8bfb4;
+  text-decoration: none;
+  color: white;
+  background-color: #000;
+  padding: 0.8rem;
+  padding-inline: 2rem;
+  border-radius: 0.4rem;
+  margin-top: 0.5rem;
+  width: fit-content;
+}
+.get-yours-btn:hover {
+  color: white;
+  background-color: #484848;
+  transition: all;
+  transition-duration: 300ms;
+}
+
+.our-bestsellers-images-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* OUR BESTSELLERS STYLE ENDS HERE */
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .categories-content::-webkit-scrollbar {
