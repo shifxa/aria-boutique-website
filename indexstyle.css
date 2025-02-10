@@ -367,7 +367,8 @@ a.nav-link {
 .newsletter-wrapper {
   /* background-color: #d8bfb4; */
   width: 100%;
-  height: 40vh;
+  min-height: 40vh;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -598,10 +599,13 @@ a.nav-link {
   align-items: start;
   justify-content: center;
   min-height: 60vh;
+  height: max-content;
+  margin-top: 4%;
 }
 
 .info-div {
   width: 25%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -667,6 +671,10 @@ a.nav-link {
   align-items: center;
   justify-content: center;
   width: 15%;
+  font-family: "Raleway", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
 }
 
 .footer-logo-section > img {
@@ -682,10 +690,18 @@ a.nav-link {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  font-family: "Raleway", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
 }
 
 .footer-link-group > h4 {
   color: white;
+  font-family: "Raleway", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
 }
 
 .footer-links {
@@ -701,81 +717,138 @@ a.nav-link {
 .footer-links > li > a {
   text-decoration: none;
   color: white;
+  font-family: "Raleway", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
 }
 
 .footer-links > li > a:hover {
-  color: #f9e2ae
+  color: #f9e2ae;
 }
 
-.footer-links > a{
-     color: white;
-     text-decoration: none;
+.footer-links > a {
+  color: white;
+  text-decoration: none;
+  font-family: "Raleway", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
 }
 
 .footer-links > a:hover {
-     color: #f9e2ae
-   }
-
-.contact-info{
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     flex-direction: column;
+  color: #f9e2ae;
 }
 
-.contact-info > h4{
-     color: white;
+.contact-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.footer-map > h4{
-     color: white;
-     
+.contact-info > h4 {
+  color: white;
 }
 
-.footer-map{
-     flex: 1;
+.footer-map > h4 {
+  color: white;
+  font-family: "Raleway", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
 }
 
+.footer-map {
+  flex: 1;
+}
 
 /* CSS FOR MAP */
 
 .mapouter {
-     padding: 1rem;
-     position: relative;
-     text-align: right;
-     width: 100%;
-     height: 350px;
- }
+  padding: 1rem;
+  position: relative;
+  text-align: right;
+  width: 100%;
+  height: 350px;
+}
 
- .gmap_canvas {
-     overflow: hidden;
-     background: none !important;
-     width: 100%;
-     height: 350px;
- }
+.gmap_canvas {
+  overflow: hidden;
+  background: none !important;
+  width: 100%;
+  height: 350px;
+}
 
- .gmap_iframe {
-     height: 350px !important;
- }
+.gmap_iframe {
+  height: 350px !important;
+}
 
+.divider {
+  background-color: #686056;
+  width: 90%;
+  height: 0.1rem;
+  margin-inline: auto;
+}
 
- .divider{
-     background-color: #686056;
-     width: 90%;
-     height: 0.1rem;
-     margin-inline: auto;
- }
+.footer-bottom-info {
+  background-color: #000;
+}
 
- .footer-bottom-info{
-     background-color: #000;
- }
+.footer-bottom-info > p {
+  text-align: center;
+  margin-block: 0rem;
+  padding: 1rem;
+  color: white;
+  font-family: "Raleway", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
 
- .footer-bottom-info >p{
-     text-align: center;
-     margin-block: 0rem;
-     padding: 1rem;
-     color: white;
- }
+@media (max-width: 768px) {
+  .footer-content-wrapper {
+    flex-direction: column;
+    padding: 1rem;
+    align-items: center;
+  }
+
+  .footer-logo-section {
+    width: 100%;
+    margin-top: 20%;
+  }
+
+  .footer-link-group {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-links{
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-links > li{
+    margin-left: -1.6rem;
+  }
+
+  .mapouter{
+    padding-inline: 0rem;
+  }
+
+  .footer-map > h4{
+    text-align: center;
+  }
+
+  .divider{
+    margin-top: 2rem;
+  }
+
+  .footer-map{
+    width: 100%;
+  }
+
+}
 
 /* FOOTER STYLE ENDS HERE */
 
