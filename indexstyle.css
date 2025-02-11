@@ -1,15 +1,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 
-.navbar {
-  padding: 0px;
+/* .navbar {
+  padding: 0px; */
   /* background-size: cover;
      background-repeat: no-repeat;
      background-position: center; */
   /* backdrop-filter: blur; */
-}
+/* } */
 .container-fluid {
   background-color: #d8bfb4;
 }
+
+.navbar{
+  /* background: transparent; */
+  width: 100vw;
+  height: 4rem;
+  position: fixed;
+  top: 0;
+  z-index: 11;
+}
+
+/* change navbar styles on scroll using javascript */
+/* .window-scroll {
+  background: #d8bfb4;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+} */
 
 .nav-logo1 {
   height: 70px;
@@ -24,6 +39,10 @@
   justify-content: center;
   align-items: center;
 }
+
+/* .nav-item a:hover{
+  color: red;
+} */
 
 .carousel-caption {
   position: absolute;
