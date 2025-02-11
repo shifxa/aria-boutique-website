@@ -7,12 +7,12 @@
      background-position: center; */
   /* backdrop-filter: blur; */
 /* } */
-.container-fluid {
+/* .container-fluid {
   background-color: #d8bfb4;
-}
+} */
 
 .navbar{
-  /* background: transparent; */
+  background: transparent;
   width: 100vw;
   height: 4rem;
   position: fixed;
@@ -21,10 +21,10 @@
 }
 
 /* change navbar styles on scroll using javascript */
-/* .window-scroll {
+.window-scroll {
   background: #d8bfb4;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-} */
+}
 
 .nav-logo1 {
   height: 70px;
