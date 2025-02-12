@@ -636,6 +636,7 @@ a.nav-link {
   text-align: left;
   margin-top: 1rem;
   gap: 1.6rem;
+  margin-left: 3rem;
 }
 
 .info-div-icon {
@@ -655,6 +656,11 @@ a.nav-link {
 .info-div > p {
   text-align: center;
 }
+
+.info-div > h4 {
+  text-align: center;
+}
+
 
 @media (max-width: 768px) {
   .info-div {
