@@ -16,5 +16,5 @@ ScrollReveal().reveal(".quotes", {
 //change navbar  styles on scroll
 
 window.addEventListener('scroll', () => {
-    document.querySelectorAll('navbar').classList.toggle('window-scroll',window.scrollY > 0)
+    document.getElementById("sticky-navbar").classList.toggle('window-scroll',window.scrollY > 0)
     })
