@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.categories-wrapper{
+   width: 100%;
+   display: flex;
+   align-items: start;
+   flex-direction: column;
+}
+
+.categories-banner{
+    position: relative;
+    /* flex:1 */
+}

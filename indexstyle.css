@@ -24,6 +24,8 @@
 .window-scroll {
   background: #d8bfb4;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  transition: ease-in-out;
+  transition-duration: 600ms;
 }
 
 .nav-logo1 {
