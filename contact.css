@@ -1,0 +1,58 @@
+body{
+    background-color: #c1a092;
+}
+
+.contact-wrapper{
+    margin: 0px;
+    padding: 0px;
+    
+}
+
+h1{
+    font-size: 60px;
+}
+
+
+
+.contact-header{
+ margin-top: 200px ;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+.contact-contents{
+    display: flex;
+    justify-content: space-around;
+    height: 500px;
+   ;
+}
+
+
+.contact-img{
+    margin-top: 30px;
+    margin-left: 80px;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+.contact-item{
+    margin-left: 30px;
+}
+
+ .contact-item > p {
+    font-size: 18px;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.contact-item > h2 {
+text-align: center;
+font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+
+
+
+
