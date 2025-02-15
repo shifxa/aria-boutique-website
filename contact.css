@@ -1,4 +1,4 @@
-body{
+/* body{
     background-color: #c1a092;
 }
 
@@ -53,6 +53,10 @@ font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 
+ */
 
-
-
+.contact-box{
+    display: flex;
+    
+   
+}
