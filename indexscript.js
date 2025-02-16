@@ -1,20 +1,26 @@
 const scrollRevealOption = {
-    distance: "50px",
-    origin: "bottom",
-    duration: 1030,
+  distance: "50px",
+  origin: "bottom",
+  duration: 1030,
 };
 
 ScrollReveal().reveal(".quotes-header ", {
-    ...scrollRevealOption,
+  ...scrollRevealOption,
 });
 
 ScrollReveal().reveal(".quotes", {
-    ...scrollRevealOption,
-    delay: 500,
+  ...scrollRevealOption,
+  delay: 500,
 });
 
 //change navbar  styles on scroll
 
-window.addEventListener('scroll', () => {
-    document.getElementById("sticky-navbar").classList.toggle('window-scroll',window.scrollY > 0)
-    })
+window.addEventListener("scroll", () => {
+  document
+    .getElementById("sticky-navbar")
+    .classList.toggle("window-scroll", window.scrollY > 0);
+});
+
+const setCategory = (category_name) => {
+    console.log(category_name);
+};

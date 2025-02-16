@@ -168,7 +168,7 @@ a.nav-link {
   padding-inline: 2rem;
 }
 
-.categories-extra {
+/* .categories-extra {
   position: absolute;
   margin-left: -90px;
   margin-top: 100px;
@@ -177,7 +177,7 @@ a.nav-link {
   position: absolute;
   margin-left: -100px;
   margin-top: 100px;
-}
+} */
 .categories-list {
   display: flex;
   flex-direction: column;
@@ -192,6 +192,10 @@ a.nav-link {
   text-decoration: none;
   font-size: 20px;
   color: rgb(130, 49, 68);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .categories-anchor:hover {

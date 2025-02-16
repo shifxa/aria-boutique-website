@@ -1,68 +1,29 @@
+<?php
+session_start();
+include("./connection.php")
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./images/boutique logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="icon" type="image/png" href="./images/boutique logo.png">
     <script src="https://kit.fontawesome.com/fe29f9dc19.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://unpkg.com/scrollreveal"></script>
     <link rel="stylesheet" href="indexstyle.css">
+    <link rel="stylesheet" href="navbar.css">
 
     <title>BOUTIQUE MANAGEMENT SYSTEM</title>
 </head>
 
 <body>
     <!-- NAVBAR CODE STARTS HERE -->
-    <nav id="sticky-navbar" class="navbar navbar-expand-lg  navbar-light ">
-        <div class="container-fluid">
-            <!-- <a class="navbar-brand" href="#">ARIA</a> -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-logo">
-                        <img class="nav-logo1" src="./images/boutique logo.png" alt="logo" height="65px">
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="shop.html">SHOP</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="lookbook.html">LOOKBOOK</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="blog.html">BLOG</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">CONTACT</a>
-                    </li>
-
-                    <li>
-                        <form class="d-flex">
-                            <span class="searchBar">
-                                <i class="fa-solid fa-magnifying-glass nav-search-icon"></i>
-                                <input class="nav-search" type="search" placeholder="Search">
-                            </span>
-                        </form>
-                    </li>
-                </ul>
-                <a href="loginsingup page/login.html"><i class="fa-solid fa-user nav-icon"></i></a>
-                <a href="#"><i class="fa-regular fa-heart nav-icon"></i></a>
-                <a href="#"></a><i class="fa-solid fa-cart-shopping nav-icon"></i>
-            </div>
-        </div>
-    </nav>
+    <?php include("./navbar.html") ?>
     <!-- NAVBAR CODE ENDS HERE -->
-     
     <!-- IMAGE SLIDER CODE STARTS HERE -->
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -120,76 +81,88 @@
         <div class="categories-item">
             <ul class="categories-content">
                 <li class="categories-list">
-                    <img class="categories-img"
-                        src="https://i.pinimg.com/736x/36/c9/81/36c98134bef18471830d9afca03c5a2e.jpg" alt="">
-                    <a href="" class="categories-anchor">BRIDAL</a>
+                    <a href="./categories.php?category=Bridal" class="categories-anchor">
+                        <img class="categories-img"
+                            src="https://i.pinimg.com/736x/36/c9/81/36c98134bef18471830d9afca03c5a2e.jpg" alt="">
+                        BRIDAL</a>
                 </li>
 
                 <li class="categories-list">
-                    <img class="categories-img"
-                        src="https://i.pinimg.com/736x/ec/8b/a9/ec8ba94eaae0132149ea3e8a8cb22289.jpg" alt="">
-                    <a href="" class="categories-anchor">DRESS</a>
+                    <a href="./categories.php?category=Dress" class="categories-anchor">
+                        <img class="categories-img"
+                            src="https://i.pinimg.com/736x/ec/8b/a9/ec8ba94eaae0132149ea3e8a8cb22289.jpg" alt="">
+                        DRESS</a>
                 </li>
 
                 <li class="categories-list">
-                    <img class="categories-img"
-                        src="https://i.pinimg.com/736x/15/0f/ab/150fab7779292930df2f7b4762fb9dac.jpg" alt="">
-                    <a href="" class="categories-anchor">LEHENGA</a>
+                    <a href="./categories.php?category=Lehenga" class="categories-anchor">
+                        <img class="categories-img"
+                            src="https://i.pinimg.com/736x/15/0f/ab/150fab7779292930df2f7b4762fb9dac.jpg" alt="">
+                        LEHENGA</a>
                 </li>
 
                 <li class="categories-list">
-                    <img class="categories-img"
-                        src="https://i.pinimg.com/736x/a0/c5/a1/a0c5a1e7fefdf1ec92cf3233acafca89.jpg" alt="">
-                    <a href="" class="categories-anchor">BLOUSE</a>
+                    <a href="./categories.php?category=Blouse" class="categories-anchor">
+                        <img class="categories-img"
+                            src="https://i.pinimg.com/736x/a0/c5/a1/a0c5a1e7fefdf1ec92cf3233acafca89.jpg" alt="">
+                        BLOUSE</a>
                 </li>
 
                 <li class="categories-list">
-                    <img class="categories-img"
-                        src="https://i.pinimg.com/736x/2b/a9/a1/2ba9a1d6043f6249228ca09202588fc2.jpg" alt="">
-                    <a href="" class="categories-anchor">KURTA</a>
+                    <a href="./categories.php?category=Kurta" class="categories-anchor">
+                        <img class="categories-img"
+                            src="https://i.pinimg.com/736x/2b/a9/a1/2ba9a1d6043f6249228ca09202588fc2.jpg" alt="">
+                        KURTA</a>
                 </li>
 
                 <li class="categories-list">
-                    <img class="categories-img"
-                        src="https://i.pinimg.com/736x/89/14/38/89143831b298a4677ba117eaf5def968.jpg" alt="">
-                    <a href="" class="categories-anchor">SHIRTS</a>
+                    <a href="./categories.php?category=Shirts" class="categories-anchor">
+                        <img class="categories-img"
+                            src="https://i.pinimg.com/736x/89/14/38/89143831b298a4677ba117eaf5def968.jpg" alt="">
+                        SHIRTS</a>
                 </li>
 
 
                 <li class="categories-list">
-                    <img class="categories-img"
-                        src="https://i.pinimg.com/736x/d7/46/53/d74653f9645dfa54de9ab4548fb2ba47.jpg" alt="">
-                    <a href="" class="categories-anchor">GOWNS</a>
+                    <a href="./categories.php?category=Gowns" class="categories-anchor">
+                        <img class="categories-img"
+                            src="https://i.pinimg.com/736x/d7/46/53/d74653f9645dfa54de9ab4548fb2ba47.jpg" alt="">
+                        GOWNS</a>
                 </li>
 
                 <li class="categories-list">
-                    <img class="categories-img"
-                        src="https://i.pinimg.com/736x/3e/39/c1/3e39c16a950e3be9f69567e872e6bc0e.jpg" alt="">
-                    <a href="" class="categories-anchor">BOTTOM WEAR</a>
+                    <a href="./categories.php?category=Bottom Wear" class="categories-anchor">
+                        <img class="categories-img"
+                            src="https://i.pinimg.com/736x/3e/39/c1/3e39c16a950e3be9f69567e872e6bc0e.jpg" alt="">
+                        BOTTOM WEAR</a>
                 </li>
 
                 <li class="categories-list">
-                    <img class="categories-img"
-                        src="https://i.pinimg.com/736x/46/4f/64/464f64b7eded4a6fd7127161911f5886.jpg" alt="">
-                    <a href="" class="categories-anchor">SKIRTS</a>
+                    <a href="./categories.php?category=Skirts" class="categories-anchor">
+                        <img class="categories-img"
+                            src="https://i.pinimg.com/736x/46/4f/64/464f64b7eded4a6fd7127161911f5886.jpg" alt="">
+                        SKIRTS</a>
                 </li>
 
                 <li class="categories-list">
-                    <img class="categories-img"
-                        src="https://i.pinimg.com/736x/d4/2b/b8/d42bb83a03e3503571cb2c23da1a8fbb.jpg" alt="">
-                    <a href="" class="categories-anchor">PARTY WEAR</a>
+                    <a href="./categories.php?category=Party Wear" class="categories-anchor">
+                        <img class="categories-img"
+                            src="https://i.pinimg.com/736x/d4/2b/b8/d42bb83a03e3503571cb2c23da1a8fbb.jpg" alt="">
+                        PARTY WEAR</a>
                 </li>
 
                 <li class="categories-list">
-                    <img class="categories-img"
-                        src="https://i.pinimg.com/736x/09/45/b9/0945b9d2f480e21940db1b047ca1ac32.jpg" alt="">
-                    <a href="" class="categories-anchor">FUSIONS</a>
+                    <a href="./categories.php?category=Fusions" class="categories-anchor">
+                        <img class="categories-img"
+                            src="https://i.pinimg.com/736x/09/45/b9/0945b9d2f480e21940db1b047ca1ac32.jpg" alt="">
+                        FUSIONS</a>
                 </li>
 
                 <li class="categories-list">
-                    <img class="categories-img"
-                        src="https://i.pinimg.com/736x/2e/41/c5/2e41c599a9f842749f60455ffdaa8adf.jpg" alt="">
-                    <a href="" class="categories-anchor">CORD SETS</a>
+                    <a href="./categories.php?category=Cord Sets" class="categories-anchor">
+                        <img class="categories-img"
+                            src="https://i.pinimg.com/736x/2e/41/c5/2e41c599a9f842749f60455ffdaa8adf.jpg" alt="">
+                        CORD SETS</a>
                 </li>
             </ul>
         </div>
@@ -295,7 +268,7 @@
             </div>
             <h4>SECURE PAYMENTS</h4>
             <p>
-               Shop confidently at Aria Boutique with our commitment to providing a secure and trustworthy online shopping environment.
+                Shop confidently at Aria Boutique with our commitment to providing a secure and trustworthy online shopping environment.
             </p>
         </div>
 
