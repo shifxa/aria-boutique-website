@@ -1,6 +1,6 @@
 
 .navbar{
-    background: transparent;
+  background: transparent;
     width: 98.9vw;
     height: 5rem;
     position: sticky;
@@ -31,9 +31,6 @@
     align-items: center;
   }
   
-  /* .nav-item a:hover{
-    color: red;
-  } */
   
   .carousel-caption {
     position: absolute;
