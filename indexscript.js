@@ -15,12 +15,18 @@ ScrollReveal().reveal(".quotes", {
 
 //change navbar  styles on scroll
 
-window.addEventListener("scroll", () => {
-  document
-    .getElementById("sticky-navbar")
-    .classList.toggle("window-scroll", window.scrollY > 0);
-});
+document.addEventListener("DOMContentLoaded", () => {
+  // After the document i.e html content is loaded this function will execute
+  const navbar = document.getElementById("sticky-navbar");
+  const currentURL = window.location.href;
 
-const setCategory = (category_name) => {
-    console.log(category_name);
-};
+  // Check if URL contains 'categories.php'
+  if (currentURL.includes("categories.php")) {
+    navbar.style.backgroundColor = "#d8bfb4";
+  } else {
+    // On index page, keep the scroll behavior
+    window.addEventListener("scroll", () => {
+      navbar.classList.toggle("window-scroll", window.scrollY > 0);
+    });
+  }
+});
