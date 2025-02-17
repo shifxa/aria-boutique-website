@@ -7,12 +7,12 @@
   z-index: 11;
   transition: background-color 600ms ease-in-out;  /* transition for smooth change of background color  */
   background-color: transparent;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 
 /* change navbar styles on scroll using javascript */
 .window-scroll {
   background: #d8bfb4;
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
   transition-duration: 600ms;
 }
 

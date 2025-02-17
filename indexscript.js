@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentURL = window.location.href;
 
   // Check if URL contains 'categories.php'
-  if (currentURL.includes("categories.php")) {
+  if (currentURL.includes("categories.php") || currentURL.includes("lookbook.php")) {
     navbar.style.backgroundColor = "#d8bfb4";
   } else {
     // On index page, keep the scroll behavior
