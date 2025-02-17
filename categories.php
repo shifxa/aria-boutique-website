@@ -50,30 +50,7 @@ session_start();
                 <a href="./categories.php?category=Fusions" class="sidebar-link">Fusions</a>
                 <a href="./categories.php?category=Cord Sets" class="sidebar-link">Cord Sets</a>
             </div>
-            <!-- <div class="category-cards-wrapper">
-                <?php
-
-
-                // if (isset($_GET['category'])) {
-                //     $category = $_GET['category'];
-                //     echo "Selected Category: " . htmlspecialchars($category);
-                // } else {
-                //     echo "No category selected.";
-                // }
-
-                $images = array_fill(0, 12, "./images/download (17).jpeg");
-
-                foreach ($images as $image) {
-                    echo '<div class="category-card">
-                         <img src="' . $image . '" />
-                         <br/>
-                         <br/>
-                         <h5>Product Name</h5>
-                         <h6>Sub heading</h6>
-                         </div>';
-                }
-                ?>
-            </div> -->
+    
             <div class="category-cards-wrapper">
                 <?php
                 /*
