@@ -1,5 +1,6 @@
 .navbar {
   width: 98.9vw;
+  min-height: fit-content;
   height: 5rem;
   position: fixed;
   top: 0;
@@ -8,6 +9,7 @@
   transition: background-color 600ms ease-in-out;  /* transition for smooth change of background color  */
   background-color: transparent;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  overflow-y: hidden;
 }
 
 /* change navbar styles on scroll using javascript */
@@ -29,10 +31,6 @@
   justify-content: center;
   align-items: center;
 }
-
-/* .nav-item a:hover{
-    color: red;
-  } */
 
 .carousel-caption {
   position: absolute;

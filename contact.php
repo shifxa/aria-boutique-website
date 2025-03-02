@@ -18,7 +18,7 @@ session_start();
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="footer.css">
     <link rel="stylesheet" href="contact.css">
-    <title>contact </title>
+    <title>Contact </title>
     
     
 </head>

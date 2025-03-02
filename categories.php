@@ -50,7 +50,7 @@ session_start();
                 <a href="./categories.php?category=Fusions" class="sidebar-link">Fusions</a>
                 <a href="./categories.php?category=Cord Sets" class="sidebar-link">Cord Sets</a>
             </div>
-    
+
             <div class="category-cards-wrapper">
                 <?php
                 /*
@@ -95,7 +95,9 @@ session_start();
                         // 2. We used single quotes in echo because we need to pass PHP variables inside the string and they require double quotes.  
                         // 3 .If we would have used double quotes, there would be a conflict since we can't use double quotes inside another double-quoted string.
                         // 4. Concatenation (.) is used to insert values from php variables into the string
-                        echo '<div class="category-card">
+                        echo '
+                        <a href="./detail.php?product=' . $product["name"] . '" class="category-card-link">
+                            <div class="category-card">
                                 <img src="' . $product["image"] . '" />  
                                 <!-- The image URL is inserted dynamically from the array -->
                                 <h5>' . $product["name"] . '</h5> 
@@ -107,7 +109,8 @@ session_start();
                                 <i class="fa-solid fa-share-from-square share-icon"></i>
                                 </span>
                                 <button name="buy-btn" class="buy-btn">Buy now</button>
-                            </div>';
+                            </div>
+                        </a>';
                     }
                 } else {
                     // If no valid category is selected or found, show a message
