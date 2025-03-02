@@ -142,13 +142,15 @@ if (session_status() === PHP_SESSION_NONE) {
                 messageElement.style.display = 'flex';
                 messageElement.style.alignItems = 'center';
                 messageElement.style.gap = '8px';
+                messageElement.style.maxWidth = '100%';
+                messageElement.style.width = 'fit-content';
 
                 messageElement.innerHTML = `
-                    <i class="fas fa-info-circle" style="color: #e74c3c; font-size: 16px;"></i>
-                    <span>For wholesale orders, please 
-                        <a href="contact.php" style="color: #e74c3c; text-decoration: none; font-weight: 500; border-bottom: 1px solid #e74c3c; padding-bottom: 1px; transition: all 0.2s ease;">contact us to get a wholesale discount</a>
-                    </span>
-                `;
+                    <i class="fas fa-info-circle" style="color: #e74c3c; font-size: 20px;padding-inline: 10px;"></i>
+                                        <span>For wholesale orders, please 
+                                            <a href="contact.php" style="color: #e74c3c; text-decoration: none; font-weight: 500; border-bottom: 1px solid #e74c3c; padding-bottom: 1px; transition: all 0.2s ease;">contact us to get a wholesale discount</a>
+                                        </span>
+                                    `;
 
                 const link = messageElement.querySelector('a');
                 link.addEventListener('mouseenter', () => {
@@ -232,4 +234,7 @@ if (session_status() === PHP_SESSION_NONE) {
     </script>
     <?php include"./footer.html" ?>
 </body>
+
+
+
 </html>

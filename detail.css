@@ -6,17 +6,18 @@
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
+  overflow-x: hidden;
 }
 
+/* Remove overflow from body if present */
 body {
-  width: 100%;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .detail-wrapper {
   width: 100%;
-  min-height: 100vh;
-  padding: 2rem 1rem;
+  height: max-content;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -107,13 +108,13 @@ body {
   width: 100%;
 }
 
-.size h4 {
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
-}
-
 .size-options {
+  width: 100%;
   display: flex;
-  gap: clamp(0.5rem, 2vw, 1rem);
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  gap: 1rem;
   margin-top: 0.8rem;
 }
 
@@ -126,24 +127,19 @@ body {
   border: 1px solid #808080;
   border-radius: 50%;
   cursor: pointer;
-  transition: all 0.3s ease;
-  color: #000;
-}
-
-.size-option:hover {
-  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .quantity {
-  width: 100%;
-  margin-top: 1.5rem;
+  margin-top: 3%;
 }
 
-.quantity h4 {
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
-}
 
 .quantity-options {
+  display: flex;
+  align-items: start;
+  justify-content: row;
+  flex-direction: row;
+  gap: 1rem;
   margin-top: 0.8rem;
 }
 
@@ -180,7 +176,8 @@ body {
   font-size: 16px;
   font-weight: 500;
   color: #333;
-  -moz-appearance: textfield; /* Firefox */
+  -moz-appearance: textfield;
+  /* Firefox */
 }
 
 /* Remove arrows/spinners from number input */
@@ -189,6 +186,7 @@ body {
   -webkit-appearance: none;
   margin: 0;
 }
+
 
 .add-to-cart-button {
   width: 98%;
@@ -296,6 +294,16 @@ body {
 
   .main-image {
     max-width: 100%;
+    height: 90%;
+    aspect-ratio: 2/3;
+  }
+  .quantity-options{
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+  }
+  .buy-now-button{
+    margin-top: 0px;
   }
 }
 
@@ -340,13 +348,13 @@ body {
 
   .add-to-cart-button-text,
   .buy-now-button-text {
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     font-size: 14px;
   }
 }
 
 /* Dark mode support */
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   body {
     background-color: #121212;
     color: #ffffff;
@@ -390,4 +398,4 @@ body {
   .buy-now-button-text:hover {
     background-color: #e0e0e0;
   }
-}
+} */
