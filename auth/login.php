@@ -78,8 +78,17 @@ include("../Server/connection.php")
             .then(response => response.text())
             .then(data => {
                 if (data.includes('success')) {
-                    // Redirect on success
-                    window.location.href = '../index.php';
+                    // Check for return URL in sessionStorage
+                    const returnUrl = sessionStorage.getItem('returnUrl');
+                    if (returnUrl) {
+                        // Clear the stored URL
+                        sessionStorage.removeItem('returnUrl');
+                        // Redirect to the stored URL
+                        window.location.href = returnUrl;
+                    } else {
+                        // Default redirect if no return URL
+                        window.location.href = '../index.php';
+                    }
                 } else {
                     // Show error message
                     errorMessage.style.display = 'block';

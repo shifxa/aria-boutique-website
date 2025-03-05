@@ -164,9 +164,14 @@ if (session_status() === PHP_SESSION_NONE) {
 
                 document.querySelector('.quantity-options').appendChild(messageElement);
 
-                messageElement.animate([
-                    { opacity: 0, transform: 'translateY(-10px)' },
-                    { opacity: 1, transform: 'translateY(0)' }
+                messageElement.animate([{
+                        opacity: 0,
+                        transform: 'translateY(-10px)'
+                    },
+                    {
+                        opacity: 1,
+                        transform: 'translateY(0)'
+                    }
                 ], {
                     duration: 300,
                     easing: 'ease-out'
@@ -191,32 +196,51 @@ if (session_status() === PHP_SESSION_NONE) {
 
         function addToCart() {
             if (!validateSelection()) return;
+            
+            // Check if user is logged in
+            <?php if (!isset($_SESSION['uemail'])) { ?>
+                // Store current URL in session
+                sessionStorage.setItem('returnUrl', window.location.href);
+                window.location.href = 'auth/login.php';
+                return;
+            <?php } ?>
+
             // Add to cart functionality here
         }
 
         function buyNow() {
             if (!validateSelection()) return;
-            
+
+           
+
+            // Check if user is logged in
+            <?php if (!isset($_SESSION['uemail'])) { ?>
+                // Store current URL in session
+                sessionStorage.setItem('returnUrl', window.location.href);
+                window.location.href = 'auth/login.php';
+                return;
+            <?php } ?>
+
             const quantity = parseInt(document.getElementById('quantity-input').value);
             const totalAmount = price * quantity;
-            
+
             // Razorpay integration
             var options = {
-                key: "rzp_test_J8YZAbvHFxFR5O", 
-                amount: totalAmount * 100, 
+                key: "rzp_test_J8YZAbvHFxFR5O",
+                amount: totalAmount * 100,
                 currency: "INR",
                 name: "Aria Boutique",
                 description: `${document.getElementById('product-name').innerText} - Size: ${selectedSize}`,
                 image: "images/boutique logo.png",
-                handler: function (response) {
+                handler: function(response) {
                     // Handle successful payment
-                    alert('Payment successful! Payment ID: ' + response.razorpay_payment_id);
-                    // You should add server-side verification here
+                    alert('Payment successful! Payment ID: ' + response);
+                    console.log(response);
                 },
                 prefill: {
-                    name: "", // Can be filled from user's session if available
-                    email: "",
-                    contact: ""
+                    name: "<?php echo isset($_SESSION['name']) ? $_SESSION['name'] : ''; ?>",
+                    email: "<?php echo isset($_SESSION['uemail']) ? $_SESSION['uemail'] : ''; ?>",
+                    contact: "<?php echo isset($_SESSION['phone']) ? $_SESSION['phone'] : ''; ?>"
                 },
                 notes: {
                     size: selectedSize,
@@ -229,10 +253,16 @@ if (session_status() === PHP_SESSION_NONE) {
             };
 
             var rzp = new Razorpay(options);
+            
+            rzp.on('payment.failed', function(response) {
+                alert('Payment failed! Please try again.');
+                console.log(response);
+            });
+
             rzp.open();
         }
     </script>
-    <?php include"./footer.html" ?>
+    <?php include "./footer.html" ?>
 </body>
 
 
