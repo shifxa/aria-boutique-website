@@ -20,8 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const navbar = document.getElementById("sticky-navbar");
   const currentURL = window.location.href;
 
-  // Check if URL contains 'categories.php'
+  // Check if we're NOT on index.php
   if (!currentURL.includes("index.php")) {
+    // Set background color for all non-index pages
     navbar.style.backgroundColor = "#d8bfb4";
   } else {
     // On index page, keep the scroll behavior

@@ -61,17 +61,22 @@ if (empty($category_name)) {
         <div class="category-content">
             <div class="catalog-sidebar">
                 <!-- Sidebar links to the category page to update category url parameters -->
-                <a href="./categories.php?category=Bridal" class="sidebar-link">Bridal</a>
-                <a href="./categories.php?category=Dress" class="sidebar-link">Dress</a>
-                <a href="./categories.php?category=Lehenga" class="sidebar-link">Lehenga</a>
-                <a href="./categories.php?category=Blouse" class="sidebar-link">Blouse</a>
-                <a href="./categories.php?category=Kurti" class="sidebar-link">Kurti</a>
-                <a href="./categories.php?category=Shirts" class="sidebar-link">Shirts</a>
-                <a href="./categories.php?category=Gowns" class="sidebar-link">Gowns</a>
-                <a href="./categories.php?category=Bottom Wear" class="sidebar-link">Bottom Wear</a>
-                <a href="./categories.php?category=Skirts" class="sidebar-link">Skirts</a>
-                <a href="./categories.php?category=Fusions" class="sidebar-link">Fusions</a>
-                <a href="./categories.php?category=Cord Sets" class="sidebar-link">Cord Sets</a>
+                <?php
+                // Fetch all categories from the database
+                $cat_stmt = $conn->prepare("SELECT id, name FROM categories ORDER BY name ASC");
+                $cat_stmt->execute();
+                $cat_result = $cat_stmt->get_result();
+                
+                // Loop through categories and create sidebar links
+                while ($cat = $cat_result->fetch_assoc()) {
+                    $active_class = ($cat['id'] == $category_id) ? 'active' : '';
+                    echo '<a href="./categories.php?id=' . $cat['id'] . '" class="sidebar-link ' . $active_class . '">' . 
+                         htmlspecialchars($cat['name']) . '</a>';
+                }
+                
+                // Close the statement
+                $cat_stmt->close();
+                ?>
             </div>
 
             <div class="category-cards-wrapper">

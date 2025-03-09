@@ -15,9 +15,11 @@ if (isset($_POST['login-btn'])) {
 
     if ($res1 && mysqli_num_rows($res1) > 0) {
         $user = mysqli_fetch_assoc($res1);
+        $_SESSION['user_id'] = $user['id'];
         $_SESSION['name'] = $user['name'];
         $_SESSION['user_img'] = $user['user_pp'];
         $_SESSION['uemail'] = $email;
+        $_SESSION['phone'] = $user['phone'];
         $_SESSION['role'] = $user['role'];
 
         // Check if user is admin
@@ -48,6 +50,11 @@ else if (isset($_POST['register-btn'])) {
         $insert_query = "INSERT INTO users (name, email, phone, password, role) VALUES ('$fullname', '$email', '$phone', '$password', '$role')";
 
         if (mysqli_query($conn, $insert_query)) {
+            // Get the newly created user's ID
+            $new_user_id = mysqli_insert_id($conn);
+            
+            // Store user data in session
+            $_SESSION['user_id'] = $new_user_id;
             $_SESSION['name'] = $fullname;
             $_SESSION['uemail'] = $email;
             $_SESSION['phone'] = $phone;

@@ -54,14 +54,26 @@ if (isset($_SESSION['success_message'])) {
             <ul class="nav-links">
                 <li class="nav-item">
                     <a href="add-product.php" class="nav-link active">
-                        <i class="fas fa-box"></i>
-                        <span>Products</span>
+                        <i class="fas fa-plus"></i>
+                        <span>Add Product</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="add-category.php" class="nav-link">
                         <i class="fas fa-tags"></i>
                         <span>Categories</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="products.php" class="nav-link">
+                        <i class="fas fa-box"></i>
+                        <span>All Products</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="orders.php" class="nav-link ">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span>Orders</span>
                     </a>
                 </li>
             </ul>
@@ -81,6 +93,7 @@ if (isset($_SESSION['success_message'])) {
                 left: 0;
                 width: 100%;
                 padding: 0.5rem;
+
                 border-top: 1px solid var(--border-color);
             }
 
@@ -88,7 +101,7 @@ if (isset($_SESSION['success_message'])) {
                 display: flex;
                 align-items: center;
                 gap: 0.75rem;
-                padding: 0.75rem 1rem;
+                /* padding: 0.75rem 1rem; */
                 color: #dc3545;
                 text-decoration: none;
                 border-radius: 8px;

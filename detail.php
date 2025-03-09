@@ -265,10 +265,61 @@ if ($product_id > 0) {
                 name: "Aria Boutique",
                 description: `${document.getElementById('product-name').innerText} - Size: ${selectedSize}`,
                 image: "images/boutique logo.png",
-                handler: function (response) {
-                    // Handle successful payment
-                    alert('Payment successful! Payment ID: ' + response);
-                    console.log(response);
+                handler: async function (response) {
+                    try {
+                        console.log('Razorpay Response:', response);
+                        // Prepare the order details
+                        const orderData = {
+                            payment_id: response.razorpay_payment_id,
+                            product_id: productData.id,
+                            product_name: productData.name,
+                            image: productData.image,
+                            size: selectedSize,
+                            quantity: quantity,
+                            amount: totalAmount
+                        };
+
+                        console.log('Sending order data:', orderData);
+
+                        // First store the order details
+                        const storeResponse = await fetch('store-order.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(orderData)
+                        });
+
+                        let data;
+                        const responseText = await storeResponse.text();
+                        console.log('Server response:', responseText);
+
+                        try {
+                            data = JSON.parse(responseText);
+                        } catch (e) {
+                            console.error('JSON Parse Error:', e);
+                            console.error('Response text:', responseText);
+                            throw new Error('Invalid response from server');
+                        }
+
+                        if (!storeResponse.ok) {
+                            throw new Error(data.message || 'Server returned an error');
+                        }
+
+                        if (data.success) {
+                            window.location.href = 'payment-success.php';
+                        } else {
+                            throw new Error(data.message || 'Failed to store order details');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('Error processing your order: ' + error.message);
+                    }
+                },
+                "modal": {
+                    "ondismiss": function() {
+                        console.log('Payment modal closed');
+                    }
                 },
                 prefill: {
                     name: "<?php echo isset($_SESSION['name']) ? $_SESSION['name'] : ''; ?>",
@@ -287,9 +338,40 @@ if ($product_id > 0) {
 
             var rzp = new Razorpay(options);
 
-            rzp.on('payment.failed', function (response) {
-                alert('Payment failed! Please try again.');
-                console.log(response);
+            rzp.on('payment.failed', async function (response) {
+                try {
+                    // First store the error details
+                    const storeResponse = await fetch('store-payment-error.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            error: {
+                                code: response.error.code,
+                                description: response.error.description,
+                                source: response.error.source,
+                                step: response.error.step,
+                                reason: response.error.reason
+                            }
+                        })
+                    });
+
+                    if (!storeResponse.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    const data = await storeResponse.json();
+                    
+                    if (data.success) {
+                        window.location.href = 'payment-failed.php';
+                    } else {
+                        throw new Error(data.message || 'Failed to store payment error details');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Error processing your payment failure: ' + error.message);
+                }
             });
 
             rzp.open();
