@@ -80,90 +80,29 @@ session_start();
         </div>
         <div class="categories-item">
             <ul class="categories-content">
-                <li class="categories-list">
-                    <a href="./categories.php?category=Bridal" class="categories-anchor">
-                        <img class="categories-img"
-                            src="https://i.pinimg.com/736x/36/c9/81/36c98134bef18471830d9afca03c5a2e.jpg" alt="">
-                        BRIDAL</a>
-                </li>
-
-                <li class="categories-list">
-                    <a href="./categories.php?category=Dress" class="categories-anchor">
-                        <img class="categories-img"
-                            src="https://i.pinimg.com/736x/ec/8b/a9/ec8ba94eaae0132149ea3e8a8cb22289.jpg" alt="">
-                        DRESS</a>
-                </li>
-
-                <li class="categories-list">
-                    <a href="./categories.php?category=Lehenga" class="categories-anchor">
-                        <img class="categories-img"
-                            src="https://i.pinimg.com/736x/15/0f/ab/150fab7779292930df2f7b4762fb9dac.jpg" alt="">
-                        LEHENGA</a>
-                </li>
-
-                <li class="categories-list">
-                    <a href="./categories.php?category=Blouse" class="categories-anchor">
-                        <img class="categories-img"
-                            src="https://i.pinimg.com/736x/a0/c5/a1/a0c5a1e7fefdf1ec92cf3233acafca89.jpg" alt="">
-                        BLOUSE</a>
-                </li>
-
-                <li class="categories-list">
-                    <a href="./categories.php?category=Kurta" class="categories-anchor">
-                        <img class="categories-img"
-                            src="https://i.pinimg.com/736x/2b/a9/a1/2ba9a1d6043f6249228ca09202588fc2.jpg" alt="">
-                        KURTA</a>
-                </li>
-
-                <li class="categories-list">
-                    <a href="./categories.php?category=Shirts" class="categories-anchor">
-                        <img class="categories-img"
-                            src="https://i.pinimg.com/736x/89/14/38/89143831b298a4677ba117eaf5def968.jpg" alt="">
-                        SHIRTS</a>
-                </li>
-
-
-                <li class="categories-list">
-                    <a href="./categories.php?category=Gowns" class="categories-anchor">
-                        <img class="categories-img"
-                            src="https://i.pinimg.com/736x/d7/46/53/d74653f9645dfa54de9ab4548fb2ba47.jpg" alt="">
-                        GOWNS</a>
-                </li>
-
-                <li class="categories-list">
-                    <a href="./categories.php?category=Bottom Wear" class="categories-anchor">
-                        <img class="categories-img"
-                            src="https://i.pinimg.com/736x/3e/39/c1/3e39c16a950e3be9f69567e872e6bc0e.jpg" alt="">
-                        BOTTOM WEAR</a>
-                </li>
-
-                <li class="categories-list">
-                    <a href="./categories.php?category=Skirts" class="categories-anchor">
-                        <img class="categories-img"
-                            src="https://i.pinimg.com/736x/46/4f/64/464f64b7eded4a6fd7127161911f5886.jpg" alt="">
-                        SKIRTS</a>
-                </li>
-
-                <li class="categories-list">
-                    <a href="./categories.php?category=Party Wear" class="categories-anchor">
-                        <img class="categories-img"
-                            src="https://i.pinimg.com/736x/d4/2b/b8/d42bb83a03e3503571cb2c23da1a8fbb.jpg" alt="">
-                        PARTY WEAR</a>
-                </li>
-
-                <li class="categories-list">
-                    <a href="./categories.php?category=Fusions" class="categories-anchor">
-                        <img class="categories-img"
-                            src="https://i.pinimg.com/736x/09/45/b9/0945b9d2f480e21940db1b047ca1ac32.jpg" alt="">
-                        FUSIONS</a>
-                </li>
-
-                <li class="categories-list">
-                    <a href="./categories.php?category=Cord Sets" class="categories-anchor">
-                        <img class="categories-img"
-                            src="https://i.pinimg.com/736x/2e/41/c5/2e41c599a9f842749f60455ffdaa8adf.jpg" alt="">
-                        CORD SETS</a>
-                </li>
+                <?php
+                // Include database connection
+                include("Server/connection.php");
+                
+                // Fetch categories from database
+                $sql = "SELECT id, name, category_image FROM categories ORDER BY name ASC";
+                $result = $conn->query($sql);
+                
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        ?>
+                        <li class="categories-list">
+                            <a href="./categories.php?id=<?php echo $row['id']; ?>" class="categories-anchor">
+                                <img class="categories-img" src="uploads/categories/<?php echo htmlspecialchars($row['category_image']); ?>" alt="<?php echo htmlspecialchars($row['name']); ?>">
+                                <?php echo strtoupper(htmlspecialchars($row['name'])); ?>
+                            </a>
+                        </li>
+                        <?php
+                    }
+                } else {
+                    echo "<p>No categories found</p>";
+                }
+                ?>
             </ul>
         </div>
     </div>

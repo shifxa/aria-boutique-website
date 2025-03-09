@@ -1,12 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 // Initialize session if not already started
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-?>
 
+include("Server/connection.php");
+
+// Get product ID from URL
+$product_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+// Fetch product details
+$product = null;
+if ($product_id > 0) {
+    $stmt = $conn->prepare("
+        SELECT p.*, c.name as category_name 
+        FROM products p 
+        LEFT JOIN categories c ON p.category_id = c.id 
+        WHERE p.id = ?
+    ");
+    $stmt->bind_param("i", $product_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($row = $result->fetch_assoc()) {
+        $product = $row;
+    } else {
+        // Redirect to home if product not found
+        header("Location: index.php");
+        exit();
+    }
+} else {
+    // Redirect to home if no product ID
+    header("Location: index.php");
+    exit();
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,15 +45,12 @@ if (session_status() === PHP_SESSION_NONE) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/png" href="./images/boutique logo.png">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/fe29f9dc19.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <title>Product Details</title>
+    <title><?php echo htmlspecialchars($product['name']); ?> - Aria Boutique</title>
 </head>
 
 <body>
@@ -33,24 +59,25 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="detail-container">
             <div class="images-section">
                 <div class="main-image">
-                    <img src="https://e0.pxfuel.com/wallpapers/63/914/desktop-wallpaper-traditional-indian-bridal-dresses.jpg"
-                        alt="">
+                    <img src="uploads/products/<?php echo htmlspecialchars($product['image']); ?>" 
+                         alt="<?php echo htmlspecialchars($product['name']); ?>">
                 </div>
             </div>
             <div class="detailed-info-section">
                 <div class="info-headings">
-                    <h5>Bridal</h5>
-                    <h1 id="product-name">Red Bridal Studded Gown</h1>
+                    <h5><?php echo htmlspecialchars($product['category_name']); ?></h5>
+                    <h1 id="product-name"><?php echo htmlspecialchars($product['name']); ?></h1>
                 </div>
                 <div class="price">
-                    <h4 id="product-price">₹6999</h4>
-                    <h4 style="opacity: 0.5; text-decoration: line-through;">₹10000</h4>
+                    <?php if (!empty($product['discounted_price'])): ?>
+                        <h4 id="product-price">₹<?php echo htmlspecialchars($product['discounted_price']); ?></h4>
+                        <h4 style="opacity: 0.5; text-decoration: line-through;">₹<?php echo htmlspecialchars($product['price']); ?></h4>
+                    <?php else: ?>
+                        <h4 id="product-price">₹<?php echo htmlspecialchars($product['price']); ?></h4>
+                    <?php endif; ?>
                 </div>
                 <div class="description">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero a officiis itaque inventore quia
-                        optio quos sed similique qui aspernatur soluta aliquid expedita tempore doloribus et cupiditate,
-                        praesentium amet iure.
-                    </p>
+                    <p><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
                 </div>
                 <div class="size">
                     <h4>Select Size -</h4>
@@ -91,6 +118,12 @@ if (session_status() === PHP_SESSION_NONE) {
         let selectedSize = null;
         const priceStr = document.getElementById('product-price').innerText;
         const price = parseInt(priceStr.replace('₹', ''));
+        const productData = {
+            id: <?php echo $product_id; ?>,
+            name: <?php echo json_encode($product['name']); ?>,
+            price: <?php echo !empty($product['discounted_price']) ? $product['discounted_price'] : $product['price']; ?>,
+            image: <?php echo json_encode($product['image']); ?>
+        };
 
         function selectSize(element) {
             // Remove selected class from all size options
@@ -264,7 +297,4 @@ if (session_status() === PHP_SESSION_NONE) {
     </script>
     <?php include "./footer.html" ?>
 </body>
-
-
-
 </html>

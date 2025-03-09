@@ -1,6 +1,29 @@
 <?php
 session_start();
-// include("./connection.php")
+include("Server/connection.php");
+
+// Get category ID from URL
+$category_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+// Fetch category details
+$category_name = '';
+$category_banner = '';
+if ($category_id > 0) {
+    $stmt = $conn->prepare("SELECT name, banner_image FROM categories WHERE id = ?");
+    $stmt->bind_param("i", $category_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($row = $result->fetch_assoc()) {
+        $category_name = $row['name'];
+        $category_banner = $row['banner_image'];
+    }
+}
+
+// If category not found, redirect to home
+if (empty($category_name)) {
+    header("Location: index.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,15 +43,15 @@ session_start();
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/fe29f9dc19.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
-    <title>Category Name</title>
+    <title><?php echo htmlspecialchars($category_name); ?> - Aria Boutique</title>
 </head>
 
 <body>
     <?php include("./navbar.php") ?>
     <div class="category-wrapper">
         <div class="category-banner">
-            <!-- <h1>Category Name</h1> -->
-            <img src="./images/banner.webp" />
+            <img src="uploads/categories/<?php echo htmlspecialchars($category_banner); ?>" alt="<?php echo htmlspecialchars($category_name); ?> Banner">
+            <h1><?php echo htmlspecialchars($category_name); ?></h1>
         </div>
         <div class="mid-header">
             <h4>Catalog</h4>
@@ -53,69 +76,53 @@ session_start();
 
             <div class="category-cards-wrapper">
                 <?php
-                /*
-                    * Currently, products are stored in an associative array (array with key and value pairs) for testing purposes.
-                    * The next step is to replace this array with data fetched from a database.
-                    * Instead of checking against a hardcoded array, we will query the database
-                    * using SQL to get products dynamically based on the selected category.
-                */
-                $products = [
-                    "Bridal" => [ //* Category data, it includes key and value pairs of product image as image, product name as name, subheading, price
-                        ["image" => "https://i.pinimg.com/736x/36/c9/81/36c98134bef18471830d9afca03c5a2e.jpg", "name" => "Bridal Dress 1", "subheading" => "Elegant Wedding Gown", "price" => "12999"],
-                        ["image" => "https://i.pinimg.com/originals/79/64/4f/79644f4e9d44ed6fc648c17aa7a1ab19.jpg", "name" => "Bridal Dress 2", "subheading" => "Modern Bridal Wear", "price" => "14999"],
-                    ],
-                    "Dress" => [
-                        ["image" => "https://i.pinimg.com/736x/ec/8b/a9/ec8ba94eaae0132149ea3e8a8cb22289.jpg", "name" => "Dress Outfit 1", "subheading" => "Comfy Everyday Wear", "price" => "2999"],
-                        ["image" => "https://img.faballey.com/images/Product/ICD00123Z/d3.jpg", "name" => "Dress Outfit 2", "subheading" => "Stylish & Relaxed", "price" => "3499"],
-                    ],
-                    "Lehenga" => [
-                        ["image" => "https://www.anantexports.in/cdn/shop/files/sky-blue-georgette-indo-western-lehenga-set-3_1024x1024_6cca15df-be7e-4e3d-82c4-2d16133e9d8e.jpg?v=1719428823&width=1946", "name" => "Lehenga 1", "subheading" => "Glamorous & Trendy", "price" => "8499"],
-                        ["image" => "https://www.anantexports.in/cdn/shop/files/IMG-20240612-WA0011_1200x.jpg?v=1718133576", "name" => "Lehenga Choli", "subheading" => "Shiny & Elegant", "price" => "9999"],
-                    ]
-                ];
+                // Fetch products for this category
+                $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = ? ORDER BY name ASC");
+                $stmt->bind_param("i", $category_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
 
-
-                // $_GET is a superglobal array in PHP that stores URL parameters (query string values).
-                // We use $_GET['category'] to retrieve the value of the 'category' parameter from the URL.
-                // Example: If the URL is http://localhost/aria-boutique-website/categories.php?category=Bridal
-                // Then $_GET['category'] will return 'Bridal'.
-                //
-                // isset($_GET['category']) checks if 'category' exists in the URL parameters and is not NULL.
-                // If it exists, we assign its value to $category variable otherwise, we set $category variable to null.
-
-                $category = isset($_GET['category']) ? $_GET['category'] : null;
-
-                // Check if $category variable is set and also if the selected category exists in the $products array
-                if ($category && isset($products[$category])) {
-
-                    // If it exists then -
-                    // Loop through the array of products for the selected category
-                    foreach ($products[$category] as $product) {
-                        // 1. The echo statement generates HTML dynamically
-                        // 2. We used single quotes in echo because we need to pass PHP variables inside the string and they require double quotes.  
-                        // 3 .If we would have used double quotes, there would be a conflict since we can't use double quotes inside another double-quoted string.
-                        // 4. Concatenation (.) is used to insert values from php variables into the string
-                        echo '
-                        <a href="./detail.php?product=' . $product["name"] . '" class="category-card-link">
-                            <div class="category-card">
-                                <img src="' . $product["image"] . '" />  
-                                <!-- The image URL is inserted dynamically from the array -->
-                                <h5>' . $product["name"] . '</h5> 
-                                <!-- Product name is dynamically inserted from the array -->
-                                <h6 class="category-card-subheading">' . $product["subheading"] . '</h6> 
-                                <!-- Subheading is also inserted dynamically -->
-                                <span class="price-share-span">
-                                <p class="category-card-price">₹' . $product["price"] . '</p>
-                                <i class="fa-solid fa-share-from-square share-icon"></i>
-                                </span>
-                                <button name="buy-btn" class="buy-btn">Buy now</button>
+                if ($result->num_rows > 0) {
+                    while($product = $result->fetch_assoc()) {
+                        ?>
+                        <div class="product-card">
+                            <?php if (isset($product['is_new']) && $product['is_new']): ?>
+                                <div class="product-badge">New</div>
+                            <?php endif; ?>
+                            <div class="quick-actions">
+                                <div class="quick-action-btn" title="Add to Wishlist">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <div class="quick-action-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <div class="quick-action-btn" title="Share">
+                                    <i class="fas fa-share-alt"></i>
+                                </div>
                             </div>
-                        </a>';
+                            <a href="detail.php?id=<?php echo $product['id']; ?>">
+                                <div class="image-container">
+                                    <img src="uploads/products/<?php echo htmlspecialchars($product['image']); ?>" 
+                                         alt="<?php echo htmlspecialchars($product['name']); ?>">
+                                </div>
+                                <div class="product-details">
+                                    <h3><?php echo htmlspecialchars($product['name']); ?></h3>
+                                    <p class="description"><?php echo htmlspecialchars($product['description']); ?></p>
+                                    <div class="price">
+                                        <?php if (!empty($product['discounted_price'])): ?>
+                                            <span class="original-price">₹<?php echo htmlspecialchars($product['price']); ?></span>
+                                            <span class="discounted-price">₹<?php echo htmlspecialchars($product['discounted_price']); ?></span>
+                                        <?php else: ?>
+                                            <span class="price">₹<?php echo htmlspecialchars($product['price']); ?></span>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <?php
                     }
                 } else {
-                    // If no valid category is selected or found, show a message
-                    echo "<p>No products found for this category.</p>";
-                    // Here, we use double quotes ("") because there's no variable inside the string
+                    echo "<p class='no-products'>No products found in this category.</p>";
                 }
                 ?>
             </div>

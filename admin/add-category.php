@@ -69,8 +69,10 @@ if (isset($_SESSION['success_message'])) {
             .sidebar-footer {
                 position: absolute;
                 bottom: 0;
+                left: 0;
                 width: 100%;
-                padding: 1rem;
+                padding: 0.5rem;
+
                 border-top: 1px solid var(--border-color);
             }
 
@@ -78,7 +80,7 @@ if (isset($_SESSION['success_message'])) {
                 display: flex;
                 align-items: center;
                 gap: 0.75rem;
-                padding: 0.75rem 1rem;
+                /* padding: 0.75rem 1rem; */
                 color: #dc3545;
                 text-decoration: none;
                 border-radius: 8px;
@@ -115,10 +117,10 @@ if (isset($_SESSION['success_message'])) {
                 </div>
                 <div class="user-profile">
                     <div class="user-info">
-                        <div class="user-name">Admin User</div>
-                        <div class="user-role">Administrator</div>
+                        <div class="user-name"><?php echo isset($_SESSION['name']) ? htmlspecialchars($_SESSION['name']) : 'Admin User'; ?></div>
+                        <div class="user-role"><?php echo isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ? 'Administrator' : 'User'; ?></div>
                     </div>
-                    <img src="https://ui-avatars.com/api/?name=Admin+User" alt="Admin" class="user-avatar">
+                    <img src="https://ui-avatars.com/api/?name=<?php echo urlencode(isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin User'); ?>" alt="Admin" class="user-avatar">
                 </div>
             </div>
 
