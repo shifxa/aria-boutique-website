@@ -24,7 +24,7 @@ session_start();
 </head>
 
 <body>
-    <?php include("./navbar.html") ?>
+    <?php include("./navbar.php") ?>
     <div class="category-wrapper">
         <div class="category-banner">
             <!-- <h1>Category Name</h1> -->

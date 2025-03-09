@@ -28,7 +28,7 @@ if (session_status() === PHP_SESSION_NONE) {
 </head>
 
 <body>
-    <?php include("./navbar.html") ?>
+    <?php include("./navbar.php") ?>
     <div class="detail-wrapper">
         <div class="detail-container">
             <div class="images-section">
@@ -165,13 +165,13 @@ if (session_status() === PHP_SESSION_NONE) {
                 document.querySelector('.quantity-options').appendChild(messageElement);
 
                 messageElement.animate([{
-                        opacity: 0,
-                        transform: 'translateY(-10px)'
-                    },
-                    {
-                        opacity: 1,
-                        transform: 'translateY(0)'
-                    }
+                    opacity: 0,
+                    transform: 'translateY(-10px)'
+                },
+                {
+                    opacity: 1,
+                    transform: 'translateY(0)'
+                }
                 ], {
                     duration: 300,
                     easing: 'ease-out'
@@ -196,7 +196,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
         function addToCart() {
             if (!validateSelection()) return;
-            
+
             // Check if user is logged in
             <?php if (!isset($_SESSION['uemail'])) { ?>
                 // Store current URL in session
@@ -211,7 +211,7 @@ if (session_status() === PHP_SESSION_NONE) {
         function buyNow() {
             if (!validateSelection()) return;
 
-           
+
 
             // Check if user is logged in
             <?php if (!isset($_SESSION['uemail'])) { ?>
@@ -232,7 +232,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 name: "Aria Boutique",
                 description: `${document.getElementById('product-name').innerText} - Size: ${selectedSize}`,
                 image: "images/boutique logo.png",
-                handler: function(response) {
+                handler: function (response) {
                     // Handle successful payment
                     alert('Payment successful! Payment ID: ' + response);
                     console.log(response);
@@ -253,8 +253,8 @@ if (session_status() === PHP_SESSION_NONE) {
             };
 
             var rzp = new Razorpay(options);
-            
-            rzp.on('payment.failed', function(response) {
+
+            rzp.on('payment.failed', function (response) {
                 alert('Payment failed! Please try again.');
                 console.log(response);
             });

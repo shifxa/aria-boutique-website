@@ -24,7 +24,7 @@ session_start();
 </head>
 <body>
     <!-- NAVBAR CODE STARTS HERE -->
-    <?php include("./navbar.html") ?>
+    <?php include("./navbar.php") ?>
     <!-- NAVBAR CODE ENDS HERE -->
 
     <!-- CONTACT CODE STARTS HERE -->

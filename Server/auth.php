@@ -10,16 +10,22 @@ if (isset($_POST['login-btn'])) {
     echo "Email received: " . htmlspecialchars($email) . "<br>";
     echo "Password received: " . htmlspecialchars($password) . "<br>";
 
-    // Database query code 
-    $res1 = mysqLi_query($conn, "select * from users where email='$email' && password='$password'");
+    // Database query code with role check
+    $res1 = mysqLi_query($conn, "SELECT * FROM users WHERE email='$email' && password='$password'");
 
     if ($res1 && mysqli_num_rows($res1) > 0) {
-        foreach ($res1 as $nres) {
-            $_SESSION['name'] = $nres['name'];
-            $_SESSION['user_img'] = $nres['user_pp'];
-        }
+        $user = mysqli_fetch_assoc($res1);
+        $_SESSION['name'] = $user['name'];
+        $_SESSION['user_img'] = $user['user_pp'];
         $_SESSION['uemail'] = $email;
-        echo "success"; // This will be checked by the JavaScript on login page
+        $_SESSION['role'] = $user['role'];
+
+        // Check if user is admin
+        if ($user['role'] === 'admin') {
+            echo "admin"; // This will be handled by JavaScript to redirect to admin panel
+        } else {
+            echo "success"; // Regular user login success
+        }
     } else {
         echo "error"; // This will be checked by the JavaScript on login page
     }
@@ -30,6 +36,7 @@ else if (isset($_POST['register-btn'])) {
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $password = $_POST['password'];
+    $role = 'user'; // Set default role as user
 
     // Check if user already exists
     $check_user = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'");
@@ -37,13 +44,14 @@ else if (isset($_POST['register-btn'])) {
     if (mysqli_num_rows($check_user) > 0) {
         echo "exists";
     } else {
-        // Insert new user
-        $insert_query = "INSERT INTO users (name, email, phone, password) VALUES ('$fullname', '$email', '$phone', '$password')";
+        // Insert new user with role
+        $insert_query = "INSERT INTO users (name, email, phone, password, role) VALUES ('$fullname', '$email', '$phone', '$password', '$role')";
 
         if (mysqli_query($conn, $insert_query)) {
             $_SESSION['name'] = $fullname;
             $_SESSION['uemail'] = $email;
             $_SESSION['phone'] = $phone;
+            $_SESSION['role'] = $role;
             echo "success";
         } else {
             echo "error";
@@ -55,9 +63,9 @@ else if (isset($_POST['register-btn'])) {
 
 
 
-$api = new Api($key_id, $secret);
+// $api = new Api($key_id, $secret);
 
-$$api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR', 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
+// $$api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR', 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
 
 
 ?>

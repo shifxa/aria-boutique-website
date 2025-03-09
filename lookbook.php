@@ -19,7 +19,7 @@
 </head>
 
 <body>
-  <?php include("./navbar.html") ?>
+  <?php include("./navbar.php") ?>
   <div class="flipbook-wrapper">
 
     <div class="flipbook">

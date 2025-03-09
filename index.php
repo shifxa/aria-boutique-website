@@ -22,7 +22,7 @@ session_start();
 
 <body>
     <!-- NAVBAR CODE STARTS HERE -->
-    <?php include("./navbar.html") ?>
+    <?php include("./navbar.php") ?>
     <!-- NAVBAR CODE ENDS HERE -->
     <!-- IMAGE SLIDER CODE STARTS HERE -->
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">

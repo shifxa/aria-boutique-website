@@ -55,51 +55,36 @@ include("../Server/connection.php")
     </div>
 
     <script>
-        // Function to handle form submission
-        function handleSubmit(event) {
-            event.preventDefault();
-            handleRememberMe();
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            formData.append('login-btn', '1');
 
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('errorMessage');
-
-            // Create form data
-            const formData = new FormData();
-            formData.append('email', email);
-            formData.append('password', password);
-            formData.append('login-btn', 'true');
-
-            // Send AJAX request
             fetch('../Server/auth.php', {
                 method: 'POST',
                 body: formData
             })
             .then(response => response.text())
             .then(data => {
-                if (data.includes('success')) {
-                    // Check for return URL in sessionStorage
-                    const returnUrl = sessionStorage.getItem('returnUrl');
-                    if (returnUrl) {
-                        // Clear the stored URL
-                        sessionStorage.removeItem('returnUrl');
-                        // Redirect to the stored URL
-                        window.location.href = returnUrl;
-                    } else {
-                        // Default redirect if no return URL
-                        window.location.href = '../index.php';
-                    }
+                if (data.includes("admin")) {
+                    window.location.href = '../admin/add-product.php'; // Redirect to admin panel
+                } else if (data.includes("success")) {
+                    // Get the return URL from session storage or default to home
+                    const returnUrl = sessionStorage.getItem('returnUrl') || '../index.php';
+                    sessionStorage.removeItem('returnUrl'); // Clear the stored URL
+                    window.location.href = returnUrl;
                 } else {
-                    // Show error message
-                    errorMessage.style.display = 'block';
-                    errorMessage.textContent = 'Incorrect Email or Password. Please try again.';
+                    document.getElementById('errorMessage').textContent = 'Invalid email or password';
+                    document.getElementById('errorMessage').style.display = 'block';
                 }
             })
             .catch(error => {
-                errorMessage.style.display = 'block';
-                errorMessage.textContent = 'An error occurred. Please try again.';
+                console.error('Error:', error);
+                document.getElementById('errorMessage').textContent = 'An error occurred. Please try again.';
+                document.getElementById('errorMessage').style.display = 'block';
             });
-        }
+        });
 
         // Function to handle remember me functionality
         function handleRememberMe() {
