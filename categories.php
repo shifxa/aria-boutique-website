@@ -55,7 +55,23 @@ if (empty($category_name)) {
         </div>
         <div class="mid-header">
             <h4>Catalog</h4>
-            <h4>99 Products</h4>
+            <h4>
+                <?php
+                // Display the count of products
+                $stmt = $conn->prepare("SELECT COUNT(*) FROM products WHERE category_id = ?");
+                $stmt->bind_param("i", $category_id);
+                $stmt->execute();
+                $stmt->bind_result($count);
+                $stmt->fetch();
+                $stmt->close();
+                // If the length of the count is greater than one then only it will be items or else it will be item
+                if ($count > 1) {
+                    echo $count . " items";
+                } else {
+                    echo $count . " item";
+                }
+                ?>
+            </h4>
             <h4 role="button">Sort by ↓</h4>
         </div>
         <div class="category-content">
@@ -66,14 +82,14 @@ if (empty($category_name)) {
                 $cat_stmt = $conn->prepare("SELECT id, name FROM categories ORDER BY name ASC");
                 $cat_stmt->execute();
                 $cat_result = $cat_stmt->get_result();
-                
+
                 // Loop through categories and create sidebar links
                 while ($cat = $cat_result->fetch_assoc()) {
                     $active_class = ($cat['id'] == $category_id) ? 'active' : '';
-                    echo '<a href="./categories.php?id=' . $cat['id'] . '" class="sidebar-link ' . $active_class . '">' . 
-                         htmlspecialchars($cat['name']) . '</a>';
+                    echo '<a href="./categories.php?id=' . $cat['id'] . '" class="sidebar-link ' . $active_class . '">' .
+                        htmlspecialchars($cat['name']) . '</a>';
                 }
-                
+
                 // Close the statement
                 $cat_stmt->close();
                 ?>
@@ -88,8 +104,8 @@ if (empty($category_name)) {
                 $result = $stmt->get_result();
 
                 if ($result->num_rows > 0) {
-                    while($product = $result->fetch_assoc()) {
-                        ?>
+                    while ($product = $result->fetch_assoc()) {
+                ?>
                         <div class="product-card">
                             <?php if (isset($product['is_new']) && $product['is_new']): ?>
                                 <div class="product-badge">New</div>
@@ -98,17 +114,17 @@ if (empty($category_name)) {
                                 <div class="quick-action-btn" title="Add to Wishlist">
                                     <i class="fas fa-heart"></i>
                                 </div>
-                                <div class="quick-action-btn" title="Quick View">
+                                <!-- <div class="quick-action-btn" title="Quick View">
                                     <i class="fas fa-eye"></i>
-                                </div>
+                                </div> -->
                                 <div class="quick-action-btn" title="Share">
                                     <i class="fas fa-share-alt"></i>
                                 </div>
                             </div>
                             <a href="detail.php?id=<?php echo $product['id']; ?>">
                                 <div class="image-container">
-                                    <img src="uploads/products/<?php echo htmlspecialchars($product['image']); ?>" 
-                                         alt="<?php echo htmlspecialchars($product['name']); ?>">
+                                    <img src="uploads/products/<?php echo htmlspecialchars($product['image']); ?>"
+                                        alt="<?php echo htmlspecialchars($product['name']); ?>">
                                 </div>
                                 <div class="product-details">
                                     <h3><?php echo htmlspecialchars($product['name']); ?></h3>
@@ -124,7 +140,7 @@ if (empty($category_name)) {
                                 </div>
                             </a>
                         </div>
-                        <?php
+                <?php
                     }
                 } else {
                     echo "<p class='no-products'>No products found in this category.</p>";
@@ -133,6 +149,7 @@ if (empty($category_name)) {
             </div>
 
         </div>
+        <span id="category_section"></span>
     </div>
     <script src="indexscript.js"></script>
 </body>

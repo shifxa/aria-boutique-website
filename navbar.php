@@ -14,6 +14,10 @@ if ($isLoggedIn) {
         <div class="nav-brand-section">
             <a href="index.php" class="nav-logo">
                 <img class="nav-logo1" src="./images/boutique logo.png" alt="Aria Boutique Logo">
+                <span class="nav-logo-text">
+                    <span>ARIA</span>
+                    <span>BOUTIQUE</span>
+                </span>
             </a>
             <button class="navbar-toggler" type="button"
                 aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -39,11 +43,12 @@ if ($isLoggedIn) {
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="index.php">HOME</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="lookbook.php">LOOKBOOK</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
-                    <a class="nav-link" href="Aboutus.html">ABOUT US</a>
+                    <!-- Scroll to the category section on the same page -->
+                    <a class="nav-link" href="#category_section">Categories</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="contact.php">CONTACT</a>
@@ -55,12 +60,12 @@ if ($isLoggedIn) {
                 <a href="<?php echo $redirectUrl; ?>" class="nav-icon-link">
                     <i class="fa-solid fa-user nav-icon"></i>
                 </a>
-                <a href="#" class="nav-icon-link">
+                <a href="wishlist.php" class="nav-icon-link">
                     <i class="fa-regular fa-heart nav-icon"></i>
                 </a>
-                <a href="#" class="nav-icon-link">
+                <!-- <a href="#" class="nav-icon-link">
                     <i class="fa-solid fa-cart-shopping nav-icon"></i>
-                </a>
+                </a> -->
             </div>
         </div>
     </div>

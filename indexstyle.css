@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 
-
-.navbar{
+.navbar {
   background-color: transparent;
   width: 100vw;
   height: 5rem;
@@ -111,9 +110,8 @@ a.nav-link {
   margin-top: 0px;
 }
 
-
 @media (max-width: 768px) {
-  #carouselExampleCaptions{
+  #carouselExampleCaptions {
     margin-top: 5rem;
   }
 }
@@ -127,6 +125,7 @@ a.nav-link {
   font-weight: 600;
   font-style: normal;
   padding-block: 2.5rem;
+  padding-top: 4rem;
 }
 
 .categories-header {
@@ -300,6 +299,13 @@ a.nav-link {
   width: 350px;
   height: 450px;
   object-fit: cover;
+  transition: all 300ms ease-in-out;
+}
+
+.new-arrivals-image:hover {
+  cursor: pointer;
+  scale: 1.01;
+  
 }
 
 .new-arrivals-headings {
@@ -379,6 +385,12 @@ a.nav-link {
   .new-arrivals-image {
     width: 240px;
     height: 320px;
+    /* Keep the hover animation even on mobile */
+    transition: transform 0.3s ease;
+  }
+
+  .new-arrivals-image:hover {
+    transform: scale(1.05);
   }
 }
 
@@ -567,7 +579,7 @@ a.nav-link {
   padding: 0.8rem;
   padding-inline: 2rem;
   border-radius: 0.4rem;
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
   width: fit-content;
 }
 .get-yours-btn:hover {
@@ -632,7 +644,7 @@ a.nav-link {
   background-color: #d8bfb4;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8%;
-  padding: 4px;
+  padding: 6px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -669,7 +681,6 @@ a.nav-link {
 .info-div > h4 {
   text-align: center;
 }
-
 
 @media (max-width: 768px) {
   .info-div {
@@ -857,31 +868,30 @@ a.nav-link {
     justify-content: center;
   }
 
-  .footer-links{
+  .footer-links {
     align-items: center;
     justify-content: center;
   }
 
-  .footer-links > li{
+  .footer-links > li {
     margin-left: -1.6rem;
   }
 
-  .mapouter{
+  .mapouter {
     padding-inline: 0rem;
   }
 
-  .footer-map > h4{
+  .footer-map > h4 {
     text-align: center;
   }
 
-  .divider{
+  .divider {
     margin-top: 2rem;
   }
 
-  .footer-map{
+  .footer-map {
     width: 100%;
   }
-
 }
 
 /* FOOTER STYLE ENDS HERE */
@@ -895,4 +905,49 @@ a.nav-link {
 .categories-content {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+
+/* Subsribe form styles */
+
+.subscription-message {
+  color: #28a745; /* Green for success */
+  margin-top: 10px;
+  font-size: 14px;
+  display: none; /* Hidden by default */
+}
+
+.subscription-message.error {
+  color: #dc3545; /* Red for errors */
+}
+
+.subscription-message.show {
+  display: block; /* Show when message is set */
+}
+
+/* Styles for toast notification */
+
+/* Toast Notification */
+.toast-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #28a745; /* Green for success */
+  color: white;
+  padding: 12px 24px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.toast-notification.error {
+  background-color: #dc3545; /* Red for errors */
+}
+
+.toast-notification.show {
+  opacity: 1;
 }

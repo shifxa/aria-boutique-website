@@ -26,12 +26,14 @@ body {
   width: 100%;
   height: 400px;
   overflow: hidden;
+  background-image: linear-gradient(#d8bfb4, #d8bfb4,#d8bfb4,#e7d8d2);
 }
 
 .category-banner > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0.1;
 }
 
 .category-banner > h1 {
@@ -39,7 +41,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
+  color: rgb(130, 49, 68);
   font-size: clamp(2rem, 4vw, 3rem);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -167,7 +169,7 @@ body {
   font-weight: 600;
   margin: 0;
   color: #333;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .product-card .description {
@@ -218,6 +220,7 @@ body {
   opacity: 0;
   transform: translateX(10px);
   transition: all 0.3s ease;
+  z-index: 10;
 }
 
 .product-card:hover .quick-actions {

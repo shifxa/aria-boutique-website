@@ -66,7 +66,7 @@ session_start();
     <!-- IMAGE SLIDER CODE ENDS HERE -->
 
     <!-- CATEGORIES CODE START HERE -->
-    <div class="categories">
+    <div id="category_section" class="categories">
         <div class="categories-header">
             <p>CATEGORIES</p>
         </div>
@@ -75,21 +75,23 @@ session_start();
                 <?php
                 // Include database connection
                 include("Server/connection.php");
-                
+
                 // Fetch categories from database
                 $sql = "SELECT id, name, category_image FROM categories ORDER BY name ASC";
                 $result = $conn->query($sql);
-                
+
                 if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) {
-                        ?>
+                    while ($row = $result->fetch_assoc()) {
+                ?>
                         <li class="categories-list">
                             <a href="./categories.php?id=<?php echo $row['id']; ?>" class="categories-anchor">
-                                <img class="categories-img" src="uploads/categories/<?php echo htmlspecialchars($row['category_image']); ?>" alt="<?php echo htmlspecialchars($row['name']); ?>">
+                                <img class="categories-img"
+                                    src="uploads/categories/<?php echo htmlspecialchars($row['category_image']); ?>"
+                                    alt="<?php echo htmlspecialchars($row['name']); ?>">
                                 <?php echo strtoupper(htmlspecialchars($row['name'])); ?>
                             </a>
                         </li>
-                        <?php
+                <?php
                     }
                 } else {
                     echo "<p>No categories found</p>";
@@ -120,10 +122,12 @@ session_start();
             <h1>New Arrivals</h1>
             <h3>Updated Products At special Prices</h3>
             <h4>Aria boutique</h4>
-            <a href="#" class="explore-btn">Explore</a>
+            <!-- <a href="#" class="explore-btn">Explore</a> -->
         </span>
         <div class="new-arrival-images-wrapper">
-            <img src="./images/download (12).jpeg" class="new-arrivals-image" alt="">
+            <div class="new-arrival-images-wrapper-div">
+                <img src="./images/download (12).jpeg" class="new-arrivals-image" alt="">
+            </div>
             <img src="./images/golden.jpeg" class="new-arrivals-image" alt="">
             <img src="./images//download (14).jpeg" class="new-arrivals-image" alt="">
         </div>
@@ -138,8 +142,9 @@ session_start();
             <h1>OUR BESTSELLERS</h1>
             <h5>Discover the styles our customers love the most! From timeless classics to trendy must-haves, our
                 best-selling pieces are carefully curated to keep you looking chic and confident.</h5>
+            <br>
             <h6>Would you like a variation with a specific brand tone? </h6>
-            <a href="#" class="get-yours-btn">Get Yours Now!</a>
+            <a href="contact.php" class="get-yours-btn">Get Yours Now!</a>
         </div>
         <div class="our-bestsellers-right-section">
             <div class="our-bestsellers-images-wrapper">
@@ -161,15 +166,14 @@ session_start();
 
     <!-- Newsletter section CODE STARTS HERE -->
     <div class="newsletter-wrapper">
-
         <div class="newsletter-section">
-            <h1>GET 10% OFF ON YOUR FIRST ORDER</h1>
+            <h1>Join Our Community</h1>
             <p>Subscribe to get to know about special offers, free giveaways, and once-in-a-lifetime deals.</p>
-
-            <form class="subscription-form">
-                <input type="email" placeholder="Enter your email" required>
+            <form id="subscription-form" class="subscription-form" action="subscribe.php" method="POST">
+                <input type="email" name="email" placeholder="Enter your email" required>
                 <button type="submit">SUBSCRIBE</button>
             </form>
+            <p id="subscription-message" class="subscription-message"></p>
         </div>
     </div>
     <!-- Newsletter section CODE ENDS HERE -->
@@ -181,7 +185,8 @@ session_start();
                 <i class="fa-regular fa-face-smile nav-search-icon"></i>
             </div>
             <h4>HAPPY CUSTOMERS</h4>
-            <p> Our customers love our services! We are committed to delivering excellence, ensuring satisfaction, and building long-lasting relationships.</p>
+            <p> Our customers love our services! We are committed to delivering excellence, ensuring satisfaction, and
+                building long-lasting relationships.</p>
         </div>
         <div class="info-div info-div2">
             <div class="info-div-icon">
@@ -199,7 +204,8 @@ session_start();
             </div>
             <h4>SECURE PAYMENTS</h4>
             <p>
-                Shop confidently at Aria Boutique with our commitment to providing a secure and trustworthy online shopping environment.
+                Shop confidently at Aria Boutique with our commitment to providing a secure and trustworthy online
+                shopping environment.
             </p>
         </div>
 
@@ -265,6 +271,61 @@ session_start();
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="indexscript.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("subscription-form");
+            const messageContainer = document.getElementById("subscription-message");
+
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault(); // Prevent page refresh
+
+                // Get the email input
+                const email = form.querySelector('input[name="email"]').value;
+
+                // Create FormData object to send data
+                const formData = new FormData();
+                formData.append("email", email);
+
+                try {
+                    // Send AJAX request to subscribe.php
+                    const response = await fetch("subscribe.php", {
+                        method: "POST",
+                        body: formData,
+                    });
+
+                    // Parse JSON response
+                    const result = await response.json();
+
+                    // Display the message
+                    messageContainer.textContent = result.message;
+                    messageContainer.className = `subscription-message show ${result.status === "error" ? "error" : ""}`;
+                    messageContainer.style.display = "block";
+
+                    // Clear the form on success
+                    if (result.status === "success") {
+                        form.reset();
+                    }
+
+                    // Hide message after 5 seconds
+                    setTimeout(() => {
+                        messageContainer.className = "subscription-message";
+                        messageContainer.style.display = "none";
+                    }, 5000);
+                } catch (error) {
+                    // Handle network or other errors
+                    messageContainer.textContent = "An error occurred. Please try again.";
+                    messageContainer.className = "subscription-message show error";
+                    messageContainer.style.display = "block";
+
+                    // Hide message after 5 seconds
+                    setTimeout(() => {
+                        messageContainer.className = "subscription-message";
+                        messageContainer.style.display = "none";
+                    }, 5000);
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

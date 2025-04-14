@@ -36,6 +36,7 @@ if ($product_id > 0) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,8 +60,8 @@ if ($product_id > 0) {
         <div class="detail-container">
             <div class="images-section">
                 <div class="main-image">
-                    <img src="uploads/products/<?php echo htmlspecialchars($product['image']); ?>" 
-                         alt="<?php echo htmlspecialchars($product['name']); ?>">
+                    <img src="uploads/products/<?php echo htmlspecialchars($product['image']); ?>"
+                        alt="<?php echo htmlspecialchars($product['name']); ?>">
                 </div>
             </div>
             <div class="detailed-info-section">
@@ -98,10 +99,14 @@ if ($product_id > 0) {
                         </div>
                     </div>
                 </div>
-                <div class="add-to-cart-button">
-                    <button class="add-to-cart-button-text" onclick="addToCart()">
-                        <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
+                <div class="add-to-wishlist-button">
+                    <button class="add-to-wishlist-button-text action-button share-button" title="Copy the link to share">
+                        <i class="fas fa-share"></i>
+                        Share
+                    </button>
+                    <button class="add-to-wishlist-button-text action-button wishlist-button" title="Add to wishlist">
+                        <i class="fas fa-heart"></i>
+                        Add To Wishlist
                     </button>
                 </div>
                 <div class="buy-now-button">
@@ -198,13 +203,13 @@ if ($product_id > 0) {
                 document.querySelector('.quantity-options').appendChild(messageElement);
 
                 messageElement.animate([{
-                    opacity: 0,
-                    transform: 'translateY(-10px)'
-                },
-                {
-                    opacity: 1,
-                    transform: 'translateY(0)'
-                }
+                        opacity: 0,
+                        transform: 'translateY(-10px)'
+                    },
+                    {
+                        opacity: 1,
+                        transform: 'translateY(0)'
+                    }
                 ], {
                     duration: 300,
                     easing: 'ease-out'
@@ -265,7 +270,7 @@ if ($product_id > 0) {
                 name: "Aria Boutique",
                 description: `${document.getElementById('product-name').innerText} - Size: ${selectedSize}`,
                 image: "images/boutique logo.png",
-                handler: async function (response) {
+                handler: async function(response) {
                     try {
                         console.log('Razorpay Response:', response);
                         // Prepare the order details
@@ -338,7 +343,7 @@ if ($product_id > 0) {
 
             var rzp = new Razorpay(options);
 
-            rzp.on('payment.failed', async function (response) {
+            rzp.on('payment.failed', async function(response) {
                 try {
                     // First store the error details
                     const storeResponse = await fetch('store-payment-error.php', {
@@ -362,7 +367,7 @@ if ($product_id > 0) {
                     }
 
                     const data = await storeResponse.json();
-                    
+
                     if (data.success) {
                         window.location.href = 'payment-failed.php';
                     } else {
@@ -379,4 +384,5 @@ if ($product_id > 0) {
     </script>
     <?php include "./footer.html" ?>
 </body>
+
 </html>
