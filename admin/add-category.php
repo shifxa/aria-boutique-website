@@ -25,15 +25,18 @@ if (isset($_SESSION['success_message'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Category - Admin Panel</title>
     <link rel="stylesheet" href="admin.css">
     <link rel="icon" type="image/png" href="../images/boutique logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
     <div class="admin-container">
         <!-- Sidebar -->
@@ -108,11 +111,11 @@ if (isset($_SESSION['success_message'])) {
                 .sidebar-footer span {
                     display: none;
                 }
-                
+
                 .sidebar-footer {
                     padding: 0.5rem;
                 }
-                
+
                 .logout-link {
                     justify-content: center;
                 }
@@ -129,10 +132,15 @@ if (isset($_SESSION['success_message'])) {
                 </div>
                 <div class="user-profile">
                     <div class="user-info">
-                        <div class="user-name"><?php echo isset($_SESSION['name']) ? htmlspecialchars($_SESSION['name']) : 'Admin User'; ?></div>
-                        <div class="user-role"><?php echo isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ? 'Administrator' : 'User'; ?></div>
+                        <div class="user-name">
+                            <?php echo isset($_SESSION['name']) ? htmlspecialchars($_SESSION['name']) : 'Admin User'; ?>
+                        </div>
+                        <div class="user-role">
+                            <?php echo isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ? 'Administrator' : 'User'; ?>
+                        </div>
                     </div>
-                    <img src="https://ui-avatars.com/api/?name=<?php echo urlencode(isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin User'); ?>" alt="Admin" class="user-avatar">
+                    <img src="https://ui-avatars.com/api/?name=<?php echo urlencode(isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin User'); ?>"
+                        alt="Admin" class="user-avatar">
                 </div>
             </div>
 
@@ -148,18 +156,20 @@ if (isset($_SESSION['success_message'])) {
                 </div>
 
                 <?php if (isset($_SESSION['success_message'])): ?>
-                    <div class="alert alert-success" style="background: #d4edda; color: #155724; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;">
-                        <?php 
-                        echo $_SESSION['success_message']; 
+                    <div class="alert alert-success"
+                        style="background: #d4edda; color: #155724; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;">
+                        <?php
+                        echo $_SESSION['success_message'];
                         unset($_SESSION['success_message']);
                         ?>
                     </div>
                 <?php endif; ?>
 
                 <?php if (isset($_SESSION['error_message'])): ?>
-                    <div class="alert alert-danger" style="background: #f8d7da; color: #721c24; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;">
-                        <?php 
-                        echo $_SESSION['error_message']; 
+                    <div class="alert alert-danger"
+                        style="background: #f8d7da; color: #721c24; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;">
+                        <?php
+                        echo $_SESSION['error_message'];
                         unset($_SESSION['error_message']);
                         ?>
                     </div>
@@ -167,22 +177,27 @@ if (isset($_SESSION['success_message'])) {
 
                 <div id="addCategoryTab" class="tab-content active">
                     <div class="form-container">
-                        <form action="process-category.php" method="POST" enctype="multipart/form-data" id="categoryForm">
+                        <form action="process-category.php" method="POST" enctype="multipart/form-data"
+                            id="categoryForm">
                             <div class="form-grid">
                                 <div class="form-group" style="grid-column: 1 / -1;">
                                     <label class="form-label">Category Name</label>
-                                    <input type="text" class="form-control" name="name" required value="<?php echo htmlspecialchars($form_data['name']); ?>">
+                                    <input type="text" class="form-control" name="name" required
+                                        value="<?php echo htmlspecialchars($form_data['name']); ?>">
                                 </div>
 
                                 <div class="form-group" style="grid-column: 1 / -1;">
                                     <label class="form-label">Description</label>
-                                    <textarea class="form-control" name="description" required rows="4"><?php echo htmlspecialchars($form_data['description']); ?></textarea>
+                                    <textarea class="form-control" name="description" required
+                                        rows="4"><?php echo htmlspecialchars($form_data['description']); ?></textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="form-label">Category Image</label>
-                                    <div class="image-upload" onclick="document.getElementById('categoryImageInput').click()">
-                                        <input type="file" id="categoryImageInput" name="category_image" accept="image/*" style="display: none;" required>
+                                    <div class="image-upload"
+                                        onclick="document.getElementById('categoryImageInput').click()">
+                                        <input type="file" id="categoryImageInput" name="category_image"
+                                            accept="image/*" style="display: none;" required>
                                         <i class="fas fa-cloud-upload-alt upload-icon"></i>
                                         <div class="upload-text">Click to upload category image</div>
                                         <div class="upload-hint">Square image recommended (Maximum file size: 5MB)</div>
@@ -191,11 +206,14 @@ if (isset($_SESSION['success_message'])) {
 
                                 <div class="form-group">
                                     <label class="form-label">Banner Image</label>
-                                    <div class="image-upload" onclick="document.getElementById('bannerImageInput').click()">
-                                        <input type="file" id="bannerImageInput" name="banner_image" accept="image/*" style="display: none;" required>
+                                    <div class="image-upload"
+                                        onclick="document.getElementById('bannerImageInput').click()">
+                                        <input type="file" id="bannerImageInput" name="banner_image" accept="image/*"
+                                            style="display: none;" required>
                                         <i class="fas fa-cloud-upload-alt upload-icon"></i>
                                         <div class="upload-text">Click to upload banner image</div>
-                                        <div class="upload-hint">Recommended size: 1920x400px (Maximum file size: 5MB)</div>
+                                        <div class="upload-hint">Recommended size: 1920x400px (Maximum file size: 5MB)
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -211,15 +229,26 @@ if (isset($_SESSION['success_message'])) {
                 </div>
 
                 <div id="listCategoryTab" class="tab-content">
-                    <div class="categories-container" style="background: #fff; border-radius: 10px; padding: 2rem; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
+                    <div class="categories-container"
+                        style="background: #fff; border-radius: 10px; padding: 2rem; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
                         <table class="categories-table" style="width: 100%; border-collapse: collapse;">
                             <thead>
                                 <tr>
-                                    <th style="background: #f8f9fa; padding: 1rem; text-align: left; font-weight: 600; color: #444; border-bottom: 2px solid #eee;">ID</th>
-                                    <th style="background: #f8f9fa; padding: 1rem; text-align: left; font-weight: 600; color: #444; border-bottom: 2px solid #eee;">Category</th>
-                                    <th style="background: #f8f9fa; padding: 1rem; text-align: left; font-weight: 600; color: #444; border-bottom: 2px solid #eee;">Description</th>
-                                    <th style="background: #f8f9fa; padding: 1rem; text-align: left; font-weight: 600; color: #444; border-bottom: 2px solid #eee;">Images</th>
-                                    <th style="background: #f8f9fa; padding: 1rem; text-align: left; font-weight: 600; color: #444; border-bottom: 2px solid #eee;">Actions</th>
+                                    <th
+                                        style="background: #f8f9fa; padding: 1rem; text-align: left; font-weight: 600; color: #444; border-bottom: 2px solid #eee;">
+                                        ID</th>
+                                    <th
+                                        style="background: #f8f9fa; padding: 1rem; text-align: left; font-weight: 600; color: #444; border-bottom: 2px solid #eee;">
+                                        Category</th>
+                                    <th
+                                        style="background: #f8f9fa; padding: 1rem; text-align: left; font-weight: 600; color: #444; border-bottom: 2px solid #eee;">
+                                        Description</th>
+                                    <th
+                                        style="background: #f8f9fa; padding: 1rem; text-align: left; font-weight: 600; color: #444; border-bottom: 2px solid #eee;">
+                                        Images</th>
+                                    <th
+                                        style="background: #f8f9fa; padding: 1rem; text-align: left; font-weight: 600; color: #444; border-bottom: 2px solid #eee;">
+                                        Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -229,7 +258,7 @@ if (isset($_SESSION['success_message'])) {
                                 $result = $conn->query($sql);
 
                                 if ($result->num_rows > 0) {
-                                    while($row = $result->fetch_assoc()) {
+                                    while ($row = $result->fetch_assoc()) {
                                         ?>
                                         <tr>
                                             <td style="padding: 1rem; border-bottom: 1px solid #eee; color: #666;">
@@ -241,25 +270,26 @@ if (isset($_SESSION['success_message'])) {
                                                 </div>
                                             </td>
                                             <td style="padding: 1rem; border-bottom: 1px solid #eee; color: #666;">
-                                                <?php 
+                                                <?php
                                                 $description = htmlspecialchars($row['description']);
                                                 echo strlen($description) > 100 ? substr($description, 0, 100) . '...' : $description;
                                                 ?>
                                             </td>
                                             <td style="padding: 1rem; border-bottom: 1px solid #eee; color: #666;">
                                                 <div style="display: flex; gap: 1rem; align-items: center;">
-                                                    <img src="../uploads/categories/<?php echo htmlspecialchars($row['category_image']); ?>" 
-                                                         alt="Category Image" 
-                                                         style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;">
-                                                    <img src="../uploads/categories/<?php echo htmlspecialchars($row['banner_image']); ?>" 
-                                                         alt="Banner Image" 
-                                                         style="width: 80px; height: 30px; border-radius: 6px; object-fit: cover;">
+                                                    <img src="../uploads/categories/<?php echo htmlspecialchars($row['category_image']); ?>"
+                                                        alt="Category Image"
+                                                        style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;">
+                                                    <img src="../uploads/categories/<?php echo htmlspecialchars($row['banner_image']); ?>"
+                                                        alt="Banner Image"
+                                                        style="width: 80px; height: 30px; border-radius: 6px; object-fit: cover;">
                                                 </div>
                                             </td>
                                             <td style="padding: 1rem; border-bottom: 1px solid #eee; color: #666;">
                                                 <div style="display: flex; gap: 0.5rem;">
-                                                    <button class="action-btn delete-btn" onclick="deleteCategory(<?php echo $row['id']; ?>)" 
-                                                            style="padding: 0.4rem; border-radius: 6px; border: none; cursor: pointer; background: #FFEBEE; color: #D32F2F;">
+                                                    <button class="action-btn delete-btn"
+                                                        onclick="deleteCategory(<?php echo $row['id']; ?>)"
+                                                        style="padding: 0.4rem; border-radius: 6px; border: none; cursor: pointer; background: #FFEBEE; color: #D32F2F;">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </div>
@@ -278,11 +308,15 @@ if (isset($_SESSION['success_message'])) {
             </div>
 
             <style>
+                .content-area {
+                    position: relative;
+                    z-index: -1;
+                }
 
-                                .content-area{
-                                    position: relative;
-                                    z-index: -1;
-                                }
+                .main-content {
+                    position: relative;
+                    z-index: 0;
+                }
 
                 .tabs {
                     display: flex;
@@ -375,12 +409,12 @@ if (isset($_SESSION['success_message'])) {
                 <?php endif; ?>
 
                 // Handle category image upload preview
-                document.getElementById('categoryImageInput').addEventListener('change', function(e) {
+                document.getElementById('categoryImageInput').addEventListener('change', function (e) {
                     handleImagePreview(e, this);
                 });
 
                 // Handle banner image upload preview
-                document.getElementById('bannerImageInput').addEventListener('change', function(e) {
+                document.getElementById('bannerImageInput').addEventListener('change', function (e) {
                     handleImagePreview(e, this);
                 });
 
@@ -389,7 +423,7 @@ if (isset($_SESSION['success_message'])) {
                     const file = e.target.files[0];
                     if (file) {
                         const reader = new FileReader();
-                        reader.onload = function(e) {
+                        reader.onload = function (e) {
                             const uploadDiv = input.closest('.image-upload');
                             uploadDiv.style.backgroundImage = `url(${e.target.result})`;
                             uploadDiv.style.backgroundSize = input.id === 'categoryImageInput' ? 'contain' : 'cover';
@@ -407,14 +441,14 @@ if (isset($_SESSION['success_message'])) {
 
                 // Add form reset on success
                 <?php if (isset($_SESSION['success_message'])): ?>
-                document.getElementById('categoryForm').reset();
-                document.querySelectorAll('.image-upload').forEach(uploadDiv => {
-                    uploadDiv.style.backgroundImage = '';
-                    uploadDiv.style.height = '';
-                    uploadDiv.querySelector('.upload-icon').style.display = '';
-                    uploadDiv.querySelector('.upload-text').style.display = '';
-                    uploadDiv.querySelector('.upload-hint').style.display = '';
-                });
+                    document.getElementById('categoryForm').reset();
+                    document.querySelectorAll('.image-upload').forEach(uploadDiv => {
+                        uploadDiv.style.backgroundImage = '';
+                        uploadDiv.style.height = '';
+                        uploadDiv.querySelector('.upload-icon').style.display = '';
+                        uploadDiv.querySelector('.upload-text').style.display = '';
+                        uploadDiv.querySelector('.upload-hint').style.display = '';
+                    });
                 <?php endif; ?>
 
                 function deleteCategory(categoryId) {
@@ -428,24 +462,25 @@ if (isset($_SESSION['success_message'])) {
                                 category_id: categoryId
                             })
                         })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                // Remove the row from the table
-                                const row = document.querySelector(`tr:has(button[onclick="deleteCategory(${categoryId})"])`);
-                                row.remove();
-                            } else {
-                                alert('Failed to delete category: ' + data.message);
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            alert('Error deleting category');
-                        });
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    // Remove the row from the table
+                                    const row = document.querySelector(`tr:has(button[onclick="deleteCategory(${categoryId})"])`);
+                                    row.remove();
+                                } else {
+                                    alert('Failed to delete category: ' + data.message);
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('Error deleting category');
+                            });
                     }
                 }
             </script>
         </div>
     </div>
 </body>
-</html> 
+
+</html>

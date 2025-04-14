@@ -46,18 +46,10 @@ session_start();
             <div class="carousel-item">
                 <img src="https://cdn.pixelbin.io/v2/black-bread-289bfa/81ub5U/t.resize(w:2000)/manish-banner/1732099214WORLD_COLLECTION_DESKTOP_BANNER.webp"
                     class="object-fit-cover w-100 h-100" alt="...">
-                <!-- <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                </div> -->
             </div>
             <div class="carousel-item">
                 <img src="https://cdn.pixelbin.io/v2/black-bread-289bfa/81ub5U/t.resize(w:2000)/manish-banner/1722246261Saree_banner_desktop_final.webp"
                     class="object-fit-cover w-100 h-100" alt="...">
-                <!-- <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
-                </div> -->
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
@@ -268,12 +260,10 @@ session_start();
 
     <!-- FOOTER CODE ENDS HERE -->
 
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
     <script src="indexscript.js"></script>
 </body>
 
