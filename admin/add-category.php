@@ -278,6 +278,12 @@ if (isset($_SESSION['success_message'])) {
             </div>
 
             <style>
+
+                                .content-area{
+                                    position: relative;
+                                    z-index: -1;
+                                }
+
                 .tabs {
                     display: flex;
                     gap: 0;
